@@ -7,7 +7,14 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class RoutesController {
 
-    public static function world($app){
+    public static function world(Request $request, Response $response, $args)
+    {
+            $response->getBody()->write("Hello world!");
+            return $response;
+    }
+
+    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    {
 
     }
 
