@@ -2,7 +2,6 @@
 
 namespace src\handlers;
 
-use src\config\Settings;
 use Exception;
 use PDO;
 
