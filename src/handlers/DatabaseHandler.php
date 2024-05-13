@@ -2,6 +2,7 @@
 
 namespace src\handlers;
 
+use src\config\Settings;
 use Exception;
 use PDO;
 
@@ -11,7 +12,7 @@ class DatabaseHandler {
     {
         try
         {
-            $database = new PDO('mysql:host=localhost; dbname=test', 'root', '');
+            $database = new PDO(dsn: [DSN], username: [USERNAME], password: [PASSWORD]);
         }
         catch (Exception $e)
         {

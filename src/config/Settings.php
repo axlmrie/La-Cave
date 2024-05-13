@@ -2,11 +2,13 @@
 
 namespace src\config;
 
+use Dotenv\Dotenv;
+
 class Settings{
 
     public static function loadSettings()
     {
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+        $dotenv = Dotenv::createImmutable("../");
         $dotenv->load();
     }
 }

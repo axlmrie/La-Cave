@@ -12,5 +12,6 @@ $app = AppFactory::create();
 
 Routes::loadRoutes($app);
 
+Settings::loadSettings();
 
 $app->run();

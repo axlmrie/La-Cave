@@ -2,8 +2,6 @@
 
 namespace src\config;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Routing\RouteCollectorProxy;
 use src\Controllers\RoutesController;
 
@@ -16,12 +14,10 @@ class Routes{
     {
         $app->group('', function (RouteCollectorProxy $group) {
             $group->get('/', RoutesController::class . ':world');
-            //$group->;
-            //$group->;
-
+            //$group->post;
+            //$group->delete;
+            //$group->put;
         });
-
-
     }
 
 }
