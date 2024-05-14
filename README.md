@@ -4,6 +4,11 @@
 Tables mysql :
 
  <pre>
+
+Create Database lacave;
+
+use lacave;
+  
 create table famille(
     id_famille INT AUTO_INCREMENT PRIMARY KEY,
     cepage varchar(255),
@@ -14,7 +19,7 @@ create table famille(
 
 create table articles( 
     id_article INT AUTO_INCREMENT PRIMARY KEY, 
-    referernce varchar(255), 
+    reference varchar(255), 
     designation varchar(255), 
     famille INT ,
     FOREIGN KEY (famille) REFERENCES famille(id_famille) , 
@@ -68,10 +73,11 @@ create table commandes(
     fournisseur INT, 
     FOREIGN KEY (fournisseur) REFERENCES fournisseurs(id_fournisseurs) , 
     date_commande TIMESTAMP, 
-    date_suppression TIMESTAMP );
+    date_suppression DATE 
+  );
 
 
-Create table user ( 
+Create table utilisateurs ( 
     id_user INT AUTO_INCREMENT PRIMARY KEY,  
     prenom varchar(255), 
     nom varchar(255), 
