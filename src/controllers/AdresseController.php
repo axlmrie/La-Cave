@@ -7,9 +7,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\models\AdresseModels;
 
 class AdresseController {
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function updateAdresse(Request $request, Response $response, $args)
     {
-        AdresseModels::NOMDELAFONCTION();
+        AdresseModels::updateAdresse();
     }
 
 }
