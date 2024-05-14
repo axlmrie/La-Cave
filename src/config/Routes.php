@@ -111,7 +111,7 @@ class Routes{
     public static function adressesRoutes($app): void
     {
         $app->group('adresses', function (RouteCollectorProxy $group) {
-            $group->get('/', AdresseController::class . ':world');{}
+
             //$group->post;
             //$group->delete;
             $group->put('/updateAdresse', AdresseController::class . ':updateAdresse');{}
