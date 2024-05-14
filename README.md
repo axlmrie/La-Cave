@@ -9,29 +9,29 @@ create table famille(
     cepage varchar(255),
     annee YEAR ,
     vignoble varchar(255)
-    );
+);
 
 
 create table articles( 
-id_article INT AUTO_INCREMENT PRIMARY KEY, 
-referernce varchar(255), 
-designation varchar(255), 
-famille INT ,
-FOREIGN KEY (famille) REFERENCES famille(id_famille) , 
-stock INT,
-prix INT, 
-conditionnement varchar(255) 
+    id_article INT AUTO_INCREMENT PRIMARY KEY, 
+    referernce varchar(255), 
+    designation varchar(255), 
+    famille INT ,
+    FOREIGN KEY (famille) REFERENCES famille(id_famille) , 
+    stock INT,
+    prix INT, 
+    conditionnement varchar(255) 
 );
 
 
 create table adresse(  
-id_adresse INT AUTO_INCREMENT PRIMARY KEY,  
-nom_rue varchar(255),  
-ville varchar(255),  
-numero_rue INT , 
-code_postal varchar(255), 
-pays varchar(255), 
-facturation tinyint
+    id_adresse INT AUTO_INCREMENT PRIMARY KEY,  
+    nom_rue varchar(255),  
+    ville varchar(255),  
+    numero_rue INT , 
+    code_postal varchar(255), 
+    pays varchar(255), 
+    facturation tinyint
 );
 
 
@@ -72,10 +72,10 @@ create table commandes(
 
 
 Create table user ( 
-id_user INT AUTO_INCREMENT PRIMARY KEY,  
-prenom varchar(255), 
-nom varchar(255), 
-matricule varchar(255), 
-date_suppression TIMESTAMP 
+    id_user INT AUTO_INCREMENT PRIMARY KEY,  
+    prenom varchar(255), 
+    nom varchar(255), 
+    matricule varchar(255), 
+    date_suppression TIMESTAMP 
 );
 </pre>
