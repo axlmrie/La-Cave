@@ -11,7 +11,6 @@ use src\Controllers\RoutesController;
 
 class Routes{
 
-
     public static function loadRoutes($app): void
     {
         $app->group('', function (RouteCollectorProxy $group) {
@@ -30,6 +29,66 @@ class Routes{
             $group->post('/logout', LogController::class . ':logout');
         });
     }
+
+
+    public static function stockRoutes($app): void
+    {
+        $app->group('stock', function (RouteCollectorProxy $group) {
+            $group->put();//modifier stock unitairement
+            $group->put();//modif stock entreprise
+        });
+    }
+
+    public static function fournisseursRoutes($app): void
+    {
+        $app->group('fournisseurs', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function familleRoutes($app): void
+    {
+        $app->group('famille', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function commandesRoutes($app): void
+    {
+        $app->group('commandes', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function clientsRoutes($app): void
+    {
+        $app->group('clients', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function articlesRoutes($app): void
+    {
+        $app->group('articles', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function utilisateursRoutes($app): void
+    {
+        $app->group('utilisateurs', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+    public static function adressesRoutes($app): void
+    {
+        $app->group('adresses', function (RouteCollectorProxy $group) {
+
+        });
+    }
+
+
 
 }
 
