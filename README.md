@@ -10,7 +10,7 @@ create table famille(
     annee YEAR ,
     vignoble varchar(255)
     );
- </pre>
+
 
 create table articles( 
 id_article INT AUTO_INCREMENT PRIMARY KEY, 
@@ -78,3 +78,4 @@ nom varchar(255),
 matricule varchar(255), 
 date_suppression TIMESTAMP 
 );
+</pre>
