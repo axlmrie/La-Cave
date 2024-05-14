@@ -72,7 +72,7 @@ create table commandes(
   );
 
 
-Create table user ( 
+Create table utilisateurs ( 
     id_user INT AUTO_INCREMENT PRIMARY KEY,  
     prenom varchar(255), 
     nom varchar(255), 
