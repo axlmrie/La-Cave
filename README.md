@@ -68,7 +68,8 @@ create table commandes(
     fournisseur INT, 
     FOREIGN KEY (fournisseur) REFERENCES fournisseurs(id_fournisseurs) , 
     date_commande TIMESTAMP, 
-    date_suppression TIMESTAMP );
+    date_suppression TIMESTAMP 
+  );
 
 
 Create table user ( 
