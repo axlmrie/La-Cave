@@ -3,13 +3,14 @@
 
 Tables mysql :
 
+ <pre>
 create table famille(
     id_famille INT AUTO_INCREMENT PRIMARY KEY,
     cepage varchar(255),
     annee YEAR ,
     vignoble varchar(255)
     );
-
+ </pre>
 
 create table articles( 
 id_article INT AUTO_INCREMENT PRIMARY KEY, 
