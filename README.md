@@ -6,6 +6,8 @@ Tables mysql :
  <pre>
 
 Create Database lacave;
+
+use lacave;
   
 create table famille(
     id_famille INT AUTO_INCREMENT PRIMARY KEY,
