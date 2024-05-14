@@ -4,6 +4,9 @@
 Tables mysql :
 
  <pre>
+
+Create Database lacave;
+  
 create table famille(
     id_famille INT AUTO_INCREMENT PRIMARY KEY,
     cepage varchar(255),
