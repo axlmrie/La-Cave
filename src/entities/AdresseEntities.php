@@ -11,6 +11,16 @@ class AdresseEntities {
     public $pays;
     public $facturation;
 
+    public function __construct(){
+        $this->id_adresse = "";
+        $this->nom_rue = "";
+        $this->numero_rue = "";
+        $this->ville = "";
+        $this->code_postal = "";
+        $this->pays = "";
+        $this->facturation = "";
+    }
+
 
     public function getIdAdresse()
     {

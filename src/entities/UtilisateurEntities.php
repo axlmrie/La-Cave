@@ -10,6 +10,14 @@ class UtilisateurEntities {
     public $matricule;
     public $date_suppression;
 
+    public function __construct(){
+        $this->id_utilisateur = "";
+        $this->prenom = "";
+        $this->nom = "";
+        $this->matricule = "";
+        $this->date_suppression = "";
+    }
+
     /**
      * @return mixed
      */

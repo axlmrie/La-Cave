@@ -12,6 +12,17 @@ class ClientEntities {
     public $adresse_livraison;
     public $date_suppression;
 
+    public function __construct(){
+        $this->id_client = "";
+        $this->nom = "";
+        $this->prenom = "";
+        $this->mot_de_passe = "";
+        $this->numero_telephone = "";
+        $this->adresse_facturation = "";
+        $this->adresse_livraison = "";
+        $this->date_suppression = "";
+    }
+
 
     public function getIdClient()
     {

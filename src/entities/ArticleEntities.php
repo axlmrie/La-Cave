@@ -11,6 +11,15 @@ class ArticleEntities {
     public $stock;
     public $conditionnement;
     public $reference;
+    public function __construct(){
+        $this->id_article = "";
+        $this->designation = "";
+        $this->famille = "";
+        $this->prix = "";
+        $this->stock = "";
+        $this->conditionnement = "";
+        $this->reference = "";
+    }
 
 
     public function getReference()

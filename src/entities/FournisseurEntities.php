@@ -9,6 +9,14 @@ class FournisseurEntities {
     public $date_suppression;
     public $numero_telephone;
 
+    public function __construct(){
+        $this->id_fournisseur = "";
+        $this->nom = "";
+        $this->adresse = "";
+        $this->date_suppression = "";
+        $this->numero_telephone = "";
+    }
+
     /**
      * @return mixed
      */

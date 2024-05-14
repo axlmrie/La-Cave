@@ -9,6 +9,13 @@ class FamilleEntities {
     public $annee;
     public $vignoble;
 
+    public function __construct(){
+        $this->id_famille = "";
+        $this->cepage = "";
+        $this->annee = "";
+        $this->vignoble = "";
+    }
+
 
     public function getIdFamille()
     {

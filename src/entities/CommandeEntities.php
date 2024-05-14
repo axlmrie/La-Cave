@@ -11,6 +11,16 @@ class CommandeEntities {
     public $date_suppression;
     public $client;
 
+    public function __construct(){
+        $this->id_commande ="";
+        $this->article ="";
+        $this->quantite ="";
+        $this->fournisseur ="";
+        $this->date_commande ="";
+        $this->date_suppression ="";
+        $this->client ="";
+    }
+
     /**
      * @return mixed
      */
