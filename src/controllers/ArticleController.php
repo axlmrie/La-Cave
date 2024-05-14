@@ -7,9 +7,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\models\ArticleModels;
 
 class ArticleController {
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function readArticle(Request $request, Response $response, $args)
     {
-        ArticleModels::NOMDELAFONCTION();
+        ArticleModels::readArticle();
     }
 
 }

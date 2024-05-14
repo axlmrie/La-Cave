@@ -89,7 +89,7 @@ class Routes{
     public static function articlesRoutes($app): void
     {
         $app->group('articles', function (RouteCollectorProxy $group) {
-            $group->get('/', ArticleController::class . ':world');
+            $group->get('/readArticle', ArticleController::class . ':readArticle');
             //$group->post;
             //$group->delete;
             //$group->put;
