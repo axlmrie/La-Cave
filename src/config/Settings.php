@@ -8,7 +8,7 @@ class Settings{
 
     public static function loadSettings(): void
     {
-        $dotenv = Dotenv::createImmutable("../");
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../..');
         $dotenv->load();
     }
 }

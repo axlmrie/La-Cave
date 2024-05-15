@@ -1,27 +1,24 @@
 <?php
-
 namespace src\handlers;
 
-use Exception;
-use PDO;
+
 
 class DatabaseHandler {
 
-    public static function connexion(): void
-    {
-        try
-        {
-            $database = new PDO(dsn: [DSN], username: [USERNAME], password: [PASSWORD]);
-        }
-        catch (Exception $e)
-        {
-            die('Erreur : ' . $e->getMessage());
-        }
+public static function connexion(): \PDO
+{
+try {
+// Charger les variables d'environnement depuis le fichier .env
+$dsn = $_ENV['DSN'];
+$username = $_ENV['USERNAME'];
+$password = $_ENV['PASSWORD'];
 
-
-    }
-
-
-
+// Établir la connexion à la base de données en utilisant les variables chargées
+$database = new \PDO($dsn, $username, $password);
+} catch (\Exception $e) {
+// En cas d'erreur, afficher le message d'erreur
+die('Erreur : ' . $e->getMessage());
 }
-
+return $database ;
+}
+}

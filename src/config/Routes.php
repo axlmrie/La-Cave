@@ -2,11 +2,18 @@
 
 namespace src\config;
 
+use src\controllers\ArticleController;
+use src\controllers\ClientController;
+use src\controllers\CommandeController;
+use src\controllers\FamilleController;
+use src\controllers\FournisseurController;
 use src\controllers\RegisterController;
 use Slim\Routing\RouteCollectorProxy;
 use src\controllers\LogController;
 use src\Controllers\RoutesController;
-
+use src\Controllers\AdresseController;
+use src\controllers\UtilisateurController;
+use src\middlewares\ResponseMiddleware;
 
 
 class Routes{
@@ -16,7 +23,7 @@ class Routes{
         $app->group('', function (RouteCollectorProxy $group) {
             $group->get('/', RoutesController::class . ':world');
             $group->post('/register', RegisterController::class . ':register');
-            //$group->post;
+            $group->get('/testLogin', RoutesController::class . ':testLogin');
             //$group->delete;
             //$group->put;
         });
@@ -78,7 +85,7 @@ class Routes{
     public static function clientsRoutes($app): void
     {
         $app->group('clients', function (RouteCollectorProxy $group) {
-            $group->get('/', ClientController::class . ':world');
+            $group->get('/readClient', ClientController::class . ':readClient');
             //$group->post;
             //$group->delete;
             //$group->put;

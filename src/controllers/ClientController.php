@@ -7,9 +7,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\models\ClientModels;
 
 class ClientController {
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function readClient(Request $request, Response $response, $args)
     {
-        ClientModels::NOMDELAFONCTION();
+        ClientModels::readClient($request, $response, $args);
     }
 
 }

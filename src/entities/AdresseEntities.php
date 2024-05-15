@@ -2,13 +2,73 @@
 
 namespace src\entities;
 
+/**
+ * @OA\Schema(
+ *     description="Adresse entity",
+ *     title="Adresse",
+ *     required={"nom_rue", "numero_rue", "ville", "code_postal", "pays"}
+ * )
+ */
 class AdresseEntities {
+    /**
+     * @OA\Property(
+     *     description="ID de l'adresse",
+     *     example="1"
+     * )
+     * @var int
+     */
     public $id_adresse;
+
+    /**
+     * @OA\Property(
+     *     description="Nom de la rue",
+     *     example="Rue de la Liberté"
+     * )
+     * @var string
+     */
     public $nom_rue;
+    /**
+     * @OA\Property(
+     *     description="Numéro de la rue",
+     *     example="42"
+     * )
+     * @var string
+     */
     public $numero_rue;
+    /**
+     * @OA\Property(
+     *     description="Ville",
+     *     example="Paris"
+     * )
+     * @var string
+     */
     public $ville;
+
+    /**
+     * @OA\Property(
+     *     description="Code postal",
+     *     example="75001"
+     * )
+     * @var string
+     */
     public $code_postal;
+
+    /**
+     * @OA\Property(
+     *     description="Pays",
+     *     example="France"
+     * )
+     * @var string
+     */
     public $pays;
+
+    /**
+     * @OA\Property(
+     *     description="Type de facturation",
+     *     example="Facturation"
+     * )
+     * @var string
+     */
     public $facturation;
 
     public function __construct(){
