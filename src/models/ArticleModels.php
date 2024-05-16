@@ -17,7 +17,7 @@ class ArticleModels {
 
             if ($req->rowCount() > 0) {
                 $articles = $req->fetchAll(\PDO::FETCH_ASSOC);
-                $response->getBody()->write(json_encode(["articles" => $articles]));
+                //$response->getBody()->write(json_encode(["articles" => $articles]));
             } else {
                 $response = $response->withStatus(404);
                 $response->getBody()->write(json_encode(["message" => "Aucun article trouvé avec un stock inférieur à 1"]));
@@ -35,11 +35,11 @@ class ArticleModels {
         try {
             $database = DatabaseHandler::connexion();
             $req = $database->prepare("SELECT * FROM articles WHERE stock > 1");
-            $val = $req->execute();
+            $req->execute();
 
             if ($req->rowCount() > 0) {
                 $articles = $req->fetchAll(\PDO::FETCH_ASSOC);
-                $response->getBody()->write(json_encode(["articles" => $articles]));
+                //$response->getBody()->write(json_encode(["articles" => $articles]));
             } else {
                 $response = $response->withStatus(404);
                 $response->getBody()->write(json_encode(["message" => "Aucun article trouvé avec un stock inférieur à 1"]));
@@ -49,7 +49,7 @@ class ArticleModels {
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
         }
         $database = null;
-        $response->getBody()->write(json_encode($val));
+        $response->getBody()->write(json_encode($articles));
         return $response;
     }
 }
