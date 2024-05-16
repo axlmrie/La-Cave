@@ -9,7 +9,8 @@ use src\models\ArticleModels;
 class ArticleController {
     public static function readArticle(Request $request, Response $response, $args)
     {
-        ArticleModels::readArticle();
+        ArticleModels::readArticle($request, $response, $args);
+        return $response;
     }
 
 }

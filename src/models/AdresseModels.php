@@ -10,35 +10,35 @@ class AdresseModels {
     public static function updateAdresse(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
-        $id_adresse = $data['id_adresse'];
-        $pays = $data['pays'];
-        $code_postal = $data['code_postal'];
-        $numero_rue = $data['numero_rue'];
-        $ville = $data['ville'];
-        $nom_rue = $data['nom_rue'];
+        $id_adresse = $data['id_adresse'] ?? null;
+        $pays = $data['pays'] ?? null;
+        $code_postal = $data['code_postal'] ?? null;
+        $numero_rue = $data['numero_rue'] ?? null;
+        $ville = $data['ville'] ?? null;
+        $nom_rue = $data['nom_rue'] ?? null;
 
-        $database = DatabaseHandler::connexion();
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = " UPDATE adresse set nom_rue = '$nom_rue', ville = '$ville', numero_rue ='$numero_rue', code_postal ='$code_postal', pays = '$pays'  WHERE id_adresse = '$id_adresse'";
+            $req = $database->query($req);
 
-        if ($database->connect_error) {
+            if ($req->rowCount() == 1) {
+                $response->getBody()->write(json_encode(["message" => "Adresse numero, $id_adresse a bien été modifier"]));
+            } else {
+                $response = $response->withStatus(401);
+                $response->getBody()->write(json_encode(["message" => "Échec de la modification."]));
+            }
+        }catch (\Exception $e) {
             $response = $response->withStatus(500);
-            $response->getBody()->write(json_encode(["message" => "Erreur de connexion à la base de données"]));
-            return $response->withHeader('Content-Type', 'application/json');
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
+        } finally {
+            $database = null;
         }
 
-        $req = " UPDATE adresse set nom_rue = '$nom_rue', ville = '$ville', numero_rue '$numero_rue', code_postal ='$code_postal', pays = '$pays'  WHERE id_adresse = '$id_adresse'";
-
-        $result = $database->query($req);
-
-
-        if ($result->num_rows == 1) {
-            $response->getBody()->write(json_encode(["message" => "Adresse numero, $id_adresse a bien été modifier"]));
-        } else {
-            $response = $response->withStatus(401);
-            $response->getBody()->write(json_encode(["message" => "Échec de la modification."]));
-        }
-        $database->close();
-
-        return $response->withHeader('Content-Type', 'application/json');
+        $response->getBody()->write(json_encode($req));
+        return $response;
     }
 
+
 }
+

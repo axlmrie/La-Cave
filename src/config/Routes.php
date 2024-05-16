@@ -2,12 +2,15 @@
 
 namespace src\config;
 
-use src\controllers\RegisterController;
 use Slim\Routing\RouteCollectorProxy;
+use src\controllers\AdresseController;
+use src\controllers\CommandeController;
 use src\controllers\LogController;
 use src\Controllers\RoutesController;
-
-
+use src\controllers\ArticleController;
+use src\controllers\RegisterController;
+use src\controllers\ClientController;
+use src\controllers\UtilisateurController;
 
 class Routes{
 
@@ -24,7 +27,7 @@ class Routes{
 
     public static function logRoutes($app): void
     {
-        $app->group('log', function (RouteCollectorProxy $group) {
+        $app->group('/log', function (RouteCollectorProxy $group) {
             $group->post('/login', LogController::class . ':login');
             $group->post('/logout', LogController::class . ':logout');
         });
@@ -66,8 +69,8 @@ class Routes{
 
     public static function commandesRoutes($app): void
     {
-        $app->group('commandes', function (RouteCollectorProxy $group) {
-            $group->get('/', CommandeController::class . ':world');
+        $app->group('/commandes', function (RouteCollectorProxy $group) {
+            $group->get('/readCommandes', CommandeController::class . ':readCommandes');
             //$group->post;
             //$group->delete;
             //$group->put;
@@ -77,8 +80,8 @@ class Routes{
 
     public static function clientsRoutes($app): void
     {
-        $app->group('clients', function (RouteCollectorProxy $group) {
-            $group->get('/', ClientController::class . ':world');
+        $app->group('/clients', function (RouteCollectorProxy $group) {
+            $group->get('/readClient', ClientController::class . ':readClient');
             //$group->post;
             //$group->delete;
             //$group->put;
@@ -88,7 +91,7 @@ class Routes{
 
     public static function articlesRoutes($app): void
     {
-        $app->group('articles', function (RouteCollectorProxy $group) {
+        $app->group('/articles', function (RouteCollectorProxy $group) {
             $group->get('/readArticle', ArticleController::class . ':readArticle');
             //$group->post;
             //$group->delete;
@@ -99,9 +102,9 @@ class Routes{
 
     public static function utilisateursRoutes($app): void
     {
-        $app->group('utilisateurs', function (RouteCollectorProxy $group) {
-            $group->get('/', UtilisateurController::class . ':world');
-            //$group->post;
+        $app->group('/utilisateurs', function (RouteCollectorProxy $group) {
+            $group->get('/readUtilisateurs', UtilisateurController::class . ':readUtilisateurs');
+            $group->post('/createUtilisateur', UtilisateurController::class . ':createUtilisateur');
             //$group->delete;
             //$group->put;
 
@@ -110,10 +113,7 @@ class Routes{
 
     public static function adressesRoutes($app): void
     {
-        $app->group('adresses', function (RouteCollectorProxy $group) {
-
-            //$group->post;
-            //$group->delete;
+        $app->group('/adresses', function (RouteCollectorProxy $group) {
             $group->put('/updateAdresse', AdresseController::class . ':updateAdresse');{}
 
         });

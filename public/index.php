@@ -12,6 +12,11 @@ $app = AppFactory::create();
 
 Routes::loadRoutes($app);
 Routes::logRoutes($app);
+Routes::articlesRoutes($app);
+Routes::clientsRoutes($app);
+Routes::commandesRoutes($app);
+Routes::adressesRoutes($app);
+Routes::utilisateursRoutes($app);
 Settings::loadSettings();
 
 $app->run();

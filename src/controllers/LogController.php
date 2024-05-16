@@ -13,11 +13,13 @@ class LogController
     public static function login(Request $request, Response $response, $args)
     {
          logModels::login($request, $response, $args);
+         return $response;
     }
 
     public static function logout(Request $request, Response $response, $args)
     {
         logModels::logout($request, $response, $args);
+        return $response;
     }
 
 

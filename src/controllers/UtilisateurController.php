@@ -7,9 +7,16 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\models\UtilisateurModels;
 
 class UtilisateurController {
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function readUtilisateurs(Request $request, Response $response, $args)
     {
-        UtilisateurModels::NOMDELAFONCTION();
+        UtilisateurModels::readUtilisateurs($request, $response, $args);
+        return $response;
+    }
+
+    public static function createUtilisateur(Request $request, Response $response, $args)
+    {
+        UtilisateurModels::createUtilisateur($request, $response, $args);
+        return $response;
     }
 
 
