@@ -7,10 +7,10 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\models\CommandeModels;
 
 class CommandeController {
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function readCommandes(Request $request, Response $response, $args)
     {
-        CommandeModels::NOMDELAFONCTION();
-
+        CommandeModels::readCommandes($request, $response, $args);
+        return $response;
     }
 
 }

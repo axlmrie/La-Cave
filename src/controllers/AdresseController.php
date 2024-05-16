@@ -9,7 +9,14 @@ use src\models\AdresseModels;
 class AdresseController {
     public static function updateAdresse(Request $request, Response $response, $args)
     {
-        AdresseModels::updateAdresse();
+        AdresseModels::updateAdresse($request, $response, $args);
+        return $response;
+    }
+
+    public static function createAdresse(Request $request, Response $response, $args)
+    {
+        AdresseModels::createAdresse($request, $response, $args);
+        return $response;
     }
 
 }

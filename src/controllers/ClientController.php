@@ -10,6 +10,7 @@ class ClientController {
     public static function readClient(Request $request, Response $response, $args)
     {
         ClientModels::readClient($request, $response, $args);
+        return $response;
     }
 
 }

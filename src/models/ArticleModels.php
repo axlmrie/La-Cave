@@ -7,29 +7,27 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\handlers\DatabaseHandler;
 
 class ArticleModels {
+
     public static function readArticle(Request $request, Response $response, $args)
     {
-        $database = DatabaseHandler::connexion();
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = $database->prepare("SELECT * FROM articles WHERE stock < 1");
+            $req->execute();
 
-        if ($database->connect_error) {
+            if ($req->rowCount() > 0) {
+                $articles = $req->fetchAll(\PDO::FETCH_ASSOC);
+                $response->getBody()->write(json_encode(["articles" => $articles]));
+            } else {
+                $response = $response->withStatus(404);
+                $response->getBody()->write(json_encode(["message" => "Aucun article trouvé avec un stock inférieur à 1"]));
+            }
+        } catch (\Exception $e) {
             $response = $response->withStatus(500);
-            $response->getBody()->write(json_encode(["message" => "Erreur de connexion à la base de données"]));
-            return $response->withHeader('Content-Type', 'application/json');
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
         }
-
-        $req = " SELECT * From article WHERE stock < 1";
-
-        $result = $database->query($req);
-
-        if ($result->num_rows == 1) {
-            $response->getBody()->write(json_encode(["message" => "Adresse numero, $id_adresse a bien été modifier"]));
-        } else {
-            $response = $response->withStatus(401);
-            $response->getBody()->write(json_encode(["message" => "Échec de la modification."]));
-        }
-        $database->close();
-
-        return $response->withHeader('Content-Type', 'application/json');
+        $database = null;
+        $response->getBody()->write(json_encode($req));
+        return $response;
     }
-
 }

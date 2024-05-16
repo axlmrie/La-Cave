@@ -14,9 +14,12 @@ $app->addErrorMiddleware(true, true, true);
 Settings::loadSettings();
 Routes::loadRoutes($app);
 Routes::logRoutes($app);
-Routes::clientsRoutes($app);
 Routes::articlesRoutes($app);
+Routes::clientsRoutes($app);
+Routes::commandesRoutes($app);
 Routes::adressesRoutes($app);
+Routes::utilisateursRoutes($app);
+Settings::loadSettings();
 
 
 try {

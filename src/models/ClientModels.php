@@ -4,22 +4,33 @@ namespace src\models;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use src\handlers\DatabaseHandler;
 
 class ClientModels {
     public static function readClient(Request $request, Response $response, $args)
     {
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = $database->prepare("SELECT * FROM clients");
+            $req->execute();
 
-        if ($clients) {
-            // Si des clients sont trouvés, retourner les données en tant que réponse JSON
-            $response->getBody()->write(json_encode($clients));
-            return $response->withHeader('Content-Type', 'application/json');
-        } else {
-            // Si aucun client n'est trouvé, retourner une réponse avec un code 404 (Not Found)
-            $response = $response->withStatus(404);
-            $response->getBody()->write(json_encode(["message" => "Aucun client trouvé"]));
-            return $response->withHeader('Content-Type', 'application/json');
+            if ($req->rowCount() > 0) {
+                $clients = $req->fetchAll(\PDO::FETCH_ASSOC);
+                $response->getBody()->write(json_encode(["clients" => $clients]));
+            } else {
+                $response = $response->withStatus(404);
+                $response->getBody()->write(json_encode(["message" => "Aucun client trouvé"]));
+            }
+        } catch (\Exception $e) {
+            $response = $response->withStatus(500);
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des clients: " . $e->getMessage()]));
         }
+        $database = null;
+        $response->getBody()->write(json_encode($req));
+        return $response;
 
     }
+
+
 
 }
