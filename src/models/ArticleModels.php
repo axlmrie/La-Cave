@@ -34,7 +34,7 @@ class ArticleModels {
     {
         try {
             $database = DatabaseHandler::connexion();
-            $req = $database->prepare("SELECT * FROM articles WHERE stock > 1");
+            $req = $database->prepare("SELECT * FROM articles WHERE stock < 1");
             $req->execute();
 
             if ($req->rowCount() > 0) {
