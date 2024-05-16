@@ -12,5 +12,11 @@ class ArticleController {
         ArticleModels::readArticle($request, $response, $args);
         return $response;
     }
+    public static function stockArticleNeg(Request $request, Response $response, $args)
+    {
+        ArticleModels::stockArticleNeg($request, $response, $args);
+        return $response;
+    }
 
 }
+

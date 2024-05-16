@@ -72,6 +72,8 @@ class Routes{
         $app->group('/commandes', function (RouteCollectorProxy $group) {
             $group->get('/readCommandes', CommandeController::class . ':readCommandes');
             $group->post('/createCommandes', CommandeController::class . ':createCommandes');
+            $group->post('/deleteCommande', CommandeController::class . ':deleteCommande');
+
             //$group->delete;
             //$group->put;
 
@@ -93,6 +95,7 @@ class Routes{
     {
         $app->group('/articles', function (RouteCollectorProxy $group) {
             $group->get('/readArticle', ArticleController::class . ':readArticle');
+            $group->get('/stockArticleNeg', ArticleController::class . ':stockArticleNeg');
             //$group->post;
             //$group->delete;
             //$group->put;
