@@ -13,4 +13,10 @@ class AdresseController {
         return $response;
     }
 
+    public static function createAdresse(Request $request, Response $response, $args)
+    {
+        AdresseModels::createAdresse($request, $response, $args);
+        return $response;
+    }
+
 }

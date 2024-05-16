@@ -115,6 +115,7 @@ class Routes{
     {
         $app->group('/adresses', function (RouteCollectorProxy $group) {
             $group->put('/updateAdresse', AdresseController::class . ':updateAdresse');{}
+            $group ->post('/createAdresse', AdresseController::class . ':createAdresse');
 
         });
     }
