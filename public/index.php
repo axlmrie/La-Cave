@@ -4,6 +4,7 @@
 use src\config\Routes;
 use src\config\Settings;
 use Slim\Factory\AppFactory;
+use Tuupola\Middleware\CorsMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
