@@ -17,7 +17,7 @@ class CommandeModels {
 
             if ($req->rowCount() > 0) {
                 $commandes = $req->fetchAll(\PDO::FETCH_ASSOC);
-                $response->getBody()->write(json_encode(["commandes" => $commandes]));
+                //$response->getBody()->write(json_encode(["commandes" => $commandes]));
             } else {
                 $response = $response->withStatus(404);
                 $response->getBody()->write(json_encode(["message" => "Aucune commandes trouvées avec un stock inférieur à 1"]));
@@ -27,7 +27,7 @@ class CommandeModels {
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des commandes: " . $e->getMessage()]));
         }
         $database = null;
-        $response->getBody()->write(json_encode($req));
+        $response->getBody()->write(json_encode($commandes));
         return $response;
     }
     public static function createCommandes(Request $request, Response $response, $args)
