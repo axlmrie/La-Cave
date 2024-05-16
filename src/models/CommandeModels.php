@@ -38,17 +38,17 @@ class CommandeModels {
         $client = $data['client'] ?? null;
         $fournisseur = $data['fournisseur'] ?? null;
         $date_commande = $data['date_commande'] ?? null;
-        $date_suppression = $data['date_suppression'] ?? null;
         try {
 
 
             $database = DatabaseHandler::connexion();
 
-            $req = $database->prepare("INSERT INTO commandes VALUES (?, ?, ?, ?, ?, ?)");
-            $success = $req->execute([$article, $quantite, $client, $fournisseur, $date_commande, $date_suppression]);
+            $req = $database->prepare("INSERT INTO commandes VALUES ('$article', '$quantite', '$client', '$fournisseur', '$date_commande')");
+            $req->execute();
 
 
-            if ($success) {
+
+            if ($req) {
                 $response->getBody()->write(json_encode(["message" => "Données insérées avec succès."]));
             } else {
                 $response = $response->withStatus(404);

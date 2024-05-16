@@ -71,7 +71,7 @@ class Routes{
     {
         $app->group('/commandes', function (RouteCollectorProxy $group) {
             $group->get('/readCommandes', CommandeController::class . ':readCommandes');
-            $group->post('/createCommandes', UtilisateurController::class . ':createCommandes');
+            $group->post('/createCommandes', CommandeController::class . ':createCommandes');
             //$group->delete;
             //$group->put;
 
