@@ -27,7 +27,7 @@ class ArticleModels {
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
         }
         $database = null;
-        $response->getBody()->write(json_encode($req));
+        $response->getBody()->write(json_encode($articles));
         return $response;
     }
     public static function stockArticleNeg(Request $request, Response $response, $args)
