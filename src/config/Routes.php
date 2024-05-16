@@ -7,13 +7,14 @@ namespace src\config;
 use Slim\Routing\RouteCollectorProxy;
 use src\controllers\AdresseController;
 use src\controllers\CommandeController;
+use src\controllers\FamilleController;
 use src\controllers\LogController;
 use src\Controllers\RoutesController;
 use src\controllers\ArticleController;
 use src\controllers\RegisterController;
 use src\controllers\ClientController;
 use src\controllers\UtilisateurController;
-use src\middlewares\ResponseMiddleware;
+
 
 
 
@@ -63,11 +64,10 @@ class Routes{
 
     public static function familleRoutes($app): void
     {
-        $app->group('famille', function (RouteCollectorProxy $group) {
-            $group->get('/', FamilleController::class . ':world');
-            //$group->post;
-            //$group->delete;
-            //$group->put;
+        $app->group('/famille', function (RouteCollectorProxy $group) {
+            $group->get('/readFamille', FamilleController::class . ':readFamille');
+            $group->post('/createFamille', FamilleController::class . ':createFamille');
+            $group->put('/updateFamille', FamilleController::class . ':updateFamille');
 
         });
     }
