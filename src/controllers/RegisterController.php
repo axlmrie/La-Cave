@@ -8,9 +8,10 @@ use src\models\RegisterModels;
 
 
 class RegisterController {
-    public static function register(Request $request, Response $response, $args)
+    public static function register(Request $request, Response $response, $args): response
     {
         RegisterModels::register($request, $response, $args);
+        return $response;
     }
 
 }

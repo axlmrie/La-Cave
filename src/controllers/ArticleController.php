@@ -11,6 +11,7 @@ class ArticleController {
     {
         ArticleModels::readArticle($request, $response, $args);
         return $response;
+
     }
 
 }

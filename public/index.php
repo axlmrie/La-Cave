@@ -7,9 +7,11 @@ use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+
 $app = AppFactory::create();
+$app->addErrorMiddleware(true, true, true);
 
-
+Settings::loadSettings();
 Routes::loadRoutes($app);
 Routes::logRoutes($app);
 Routes::articlesRoutes($app);
@@ -19,4 +21,10 @@ Routes::adressesRoutes($app);
 Routes::utilisateursRoutes($app);
 Settings::loadSettings();
 
-$app->run();
+
+try {
+    $app->run();
+} catch (Exception $e) {
+    // We display a error message
+    die( json_encode(array("status" => "failed", "message" => "This action is not allowed")));
+}
