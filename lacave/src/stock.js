@@ -1,18 +1,18 @@
 import React from 'react';
 import './App.css';
 import Header from './header';
-import Home from './home';
+import StockContent from './stockContent';
 import Footer from './footer';
 
 
-const App = ()=>{
+const Stock = ()=>{
   return (
     <div className='App'>
       <Header/>
-      <Home/>
+      <StockContent/>
       <Footer/>
     </div>
   );
 }
 
-export default App;
+export default Stock;
