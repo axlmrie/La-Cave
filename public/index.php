@@ -30,7 +30,8 @@ Routes::commandesRoutes($app);
 Routes::adressesRoutes($app);
 Routes::utilisateursRoutes($app);
 Routes::familleRoutes($app);
-Settings::loadSettings();
+Routes::fournisseursRoutes($app);
+
 
 
 try {

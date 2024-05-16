@@ -8,6 +8,7 @@ use Slim\Routing\RouteCollectorProxy;
 use src\controllers\AdresseController;
 use src\controllers\CommandeController;
 use src\controllers\FamilleController;
+use src\controllers\FournisseurController;
 use src\controllers\LogController;
 use src\Controllers\RoutesController;
 use src\controllers\ArticleController;
@@ -53,11 +54,10 @@ class Routes{
 
     public static function fournisseursRoutes($app): void
     {
-        $app->group('fournisseurs', function (RouteCollectorProxy $group) {
-            $group->get('/', FournisseurController::class . ':world');
-            //$group->post;
-            //$group->delete;
-            //$group->put;
+        $app->group('/fournisseurs', function (RouteCollectorProxy $group) {
+            $group->get('/readFournisseurs', FournisseurController::class . ':readFournisseurs');
+            $group->post('/createFournisseurs', FournisseurController::class . ':createFournisseurs');
+            $group->put('/updateFournisseurs', FournisseurController::class . ':updateFournisseurs');
 
         });
     }

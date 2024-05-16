@@ -8,9 +8,22 @@ use src\models\FournisseurModels;
 
 class FournisseurController {
 
-    public static function NOMDELAFONCTION(Request $request, Response $response, $args)
+    public static function readFournisseurs(Request $request, Response $response, $args)
     {
-        FournisseurModels::NOMDELAFONCTION();
+        FournisseurModels::readFournisseurs($request, $response, $args);
+        return $response;
+    }
+
+    public static function createFournisseurs(Request $request, Response $response, $args)
+    {
+        FournisseurModels::createFournisseurs($request, $response, $args);
+        return $response;
+    }
+
+    public static function updateFournisseurs(Request $request, Response $response, $args)
+    {
+        FournisseurModels::updateFournisseurs($request, $response, $args);
+        return $response;
     }
 
 }
