@@ -94,7 +94,7 @@ class CommandeModels {
         $response->getBody()->write(json_encode($req));
         return $response;
     }
-    public static function AffichageCommande(Request $request, Response $response, $args)
+    public static function affichageCommandes(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
 
