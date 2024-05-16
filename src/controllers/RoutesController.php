@@ -31,8 +31,5 @@ class RoutesController {
 
             return $response->withStatus(500);
         }
-
     }
-
-
 }

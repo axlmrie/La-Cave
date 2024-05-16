@@ -21,6 +21,11 @@ class ComposerStaticInit2f29bafe6f269c855d7effcff495df55
         array (
             'src\\' => 4,
         ),
+        'T' => 
+        array (
+            'Tuupola\\Middleware\\' => 19,
+            'Tuupola\\Http\\Factory\\' => 21,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -43,6 +48,10 @@ class ComposerStaticInit2f29bafe6f269c855d7effcff495df55
         'O' => 
         array (
             'OpenApi\\' => 8,
+        ),
+        'N' => 
+        array (
+            'Neomerx\\Cors\\' => 13,
         ),
         'L' => 
         array (
@@ -74,6 +83,15 @@ class ComposerStaticInit2f29bafe6f269c855d7effcff495df55
         'src\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Tuupola\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
+            1 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+        ),
+        'Tuupola\\Http\\Factory\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/http-factory/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -132,6 +150,10 @@ class ComposerStaticInit2f29bafe6f269c855d7effcff495df55
         'OpenApi\\' => 
         array (
             0 => __DIR__ . '/..' . '/zircote/swagger-php/src',
+        ),
+        'Neomerx\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/neomerx/cors-psr7/src',
         ),
         'Laravel\\SerializableClosure\\' => 
         array (
