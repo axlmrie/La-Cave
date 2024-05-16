@@ -75,6 +75,7 @@ class Routes{
     public static function commandesRoutes($app): void
     {
         $app->group('/commandes', function (RouteCollectorProxy $group) {
+            $group->get('/affichageCommandes', CommandeController::class . ':affichageCommandes');
             $group->get('/readCommandes', CommandeController::class . ':readCommandes');
             $group->post('/createCommandes', CommandeController::class . ':createCommandes');
             $group->post('/deleteCommande', CommandeController::class . ':deleteCommande');
