@@ -18,6 +18,11 @@ class ArticleController {
         ArticleModels::stockArticleNeg($request, $response, $args);
         return $response;
     }
+    public static function articleFamille(Request $request, Response $response, $args)
+    {
+        ArticleModels::articleFamille($request, $response, $args);
+        return $response;
+    }
 
 }
 

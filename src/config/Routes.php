@@ -102,6 +102,7 @@ class Routes{
         $app->group('/articles', function (RouteCollectorProxy $group) {
             $group->get('/readArticle', ArticleController::class . ':readArticle');
             $group->get('/stockArticleNeg', ArticleController::class . ':stockArticleNeg');
+            $group->get('/articleFamille', ArticleController::class . ':articleFamille');
             //$group->post;
             //$group->delete;
             //$group->put;
