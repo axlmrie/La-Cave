@@ -9,9 +9,7 @@ use src\models\StockModels;
 
 class StockController {
 
-    public static function updateStock(Request $request, Response $response, $args)
-    {
-        StockModels::updateStock($request, $response, $args);
-        return $response;
+    public function updateStock(Request $request, Response $response, $args) {
+        return StockModels::updateStock($request, $response, $args);
     }
 }

@@ -43,10 +43,8 @@ class Routes{
     public static function stockRoutes($app): void
     {
         $app->group('/stock', function (RouteCollectorProxy $group) {
-            $group->put('/updateStock', StockController::class . ':updateStock');{}
-            //$group->post;
-            //$group->delete;
-            //$group->put;
+            $group->post('/updateStock', StockController::class . ':updateStock');
+
         });
     }
 

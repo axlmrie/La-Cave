@@ -8,24 +8,27 @@ use src\handlers\DatabaseHandler;
 
 class StockModels {
 
+
     public static function updateStock(Request $request, Response $response, $args)
     {
-        $data = $request->getParsedBody();
+        $body = $request->getBody()->getContents();
+        $data = json_decode($body, true);
+
         $stock = $data['stock'] ?? null;
         $id_article = $data['id_article'] ?? null;
 
         try {
             $database = DatabaseHandler::connexion();
-            $stmt = $database->prepare("UPDATE articles SET stock = '$stock' WHERE id_article = '$id_article'");
-            $stmt->execute();
+            $req = $database->prepare("UPDATE articles SET stock = ? WHERE id_article = ?");
+            $result = $req->execute([$stock, $id_article]);
 
-            if ($stmt->rowCount() == 1) {
-                $response->getBody()->write(json_encode(["message" => "L'article numéro $id_article a bien été modifié"]));
+            if ($result) {
+                $response->getBody()->write(json_encode(["message" => "Stock mis à jour avec succès pour l'article $id_article"]));
             } else {
                 $response = $response->withStatus(401);
-                $response->getBody()->write(json_encode(["message" => "Échec de la modification."]));
+                $response->getBody()->write(json_encode(["message" => "Échec de la mise à jour du stock."]));
             }
-        } catch (\PDOException $e) {
+        } catch (\Exception $e) {
             $response = $response->withStatus(500);
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la mise à jour du stock : " . $e->getMessage()]));
         } finally {
@@ -34,8 +37,6 @@ class StockModels {
 
         return $response;
     }
-
-
 
 
 }
