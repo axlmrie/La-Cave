@@ -28,7 +28,9 @@ Routes::clientsRoutes($app);
 Routes::commandesRoutes($app);
 Routes::adressesRoutes($app);
 Routes::utilisateursRoutes($app);
+Routes::stockRoutes($app);
 Settings::loadSettings();
+
 
 
 try {
