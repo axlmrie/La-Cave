@@ -12,6 +12,7 @@ use src\Controllers\RoutesController;
 use src\controllers\ArticleController;
 use src\controllers\RegisterController;
 use src\controllers\ClientController;
+use src\controllers\StockController;
 use src\controllers\UtilisateurController;
 use src\middlewares\ResponseMiddleware;
 
@@ -41,12 +42,9 @@ class Routes{
 
     public static function stockRoutes($app): void
     {
-        $app->group('stock', function (RouteCollectorProxy $group) {
-            $group->put();//modifier stock unitairement
-            $group->put();//modif stock entreprise
-            //$group->post;
-            //$group->delete;
-            //$group->put;
+        $app->group('/stock', function (RouteCollectorProxy $group) {
+            $group->post('/updateStock', StockController::class . ':updateStock');
+
         });
     }
 
