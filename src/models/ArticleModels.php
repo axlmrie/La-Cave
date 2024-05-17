@@ -59,7 +59,7 @@ class ArticleModels {
 
         try {
             $database = DatabaseHandler::connexion();
-            $req = $database->prepare("SELECT commandes.quantite, commandes.date_commande, clients.nom AS nom_client, fournisseurs.nom AS nom_fournisseur, articles.designation FROM commandes INNER JOIN clients ON commandes.client = clients.id_client INNER JOIN articles ON commandes.article = articles.id_article INNER JOIN fournisseurs ON commandes.fournisseur = fournisseurs.id_fournisseurs;");
+            $req = $database->prepare("Select * from articles INNER JOIN famille ON articles.famille = famille.id_famille ;");
             $req->execute();
 
             if ($req->rowCount() > 0) {
