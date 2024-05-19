@@ -64,7 +64,7 @@ class Routes{
         $app->group('/famille', function (RouteCollectorProxy $group) {
             $group->get('/readFamille', FamilleController::class . ':readFamille');
             $group->post('/createFamille', FamilleController::class . ':createFamille');
-            $group->put('/updateFamille', FamilleController::class . ':updateFamille');
+            $group->put('/updateFamille/{id}', FamilleController::class . ':updateFamille');
 
         });
     }
