@@ -4,49 +4,37 @@ namespace src\models;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use src\entities\FamilleEntities;
 use src\handlers\DatabaseHandler;
 
 class FamilleModels {
-    public static function readFamille(Request $request, Response $response, $args)
+    public static function readFamille(Request $request, Response $response, array $args)
     {
         try {
             $database = DatabaseHandler::connexion();
-            $req = $database->prepare("SELECT * FROM famille");
-            $req->execute();
-
-            if ($req->rowCount() > 0) {
-                $famille = $req->fetchAll(\PDO::FETCH_ASSOC);
-                $response->getBody()->write(json_encode(["famille" => $famille]));
-            } else {
-                $response = $response->withStatus(404);
-                $response->getBody()->write(json_encode(["message" => "Aucune famille trouvée"]));
-            }
+            $famille = FamilleEntities::readFamille($database);
+            $response->getBody()->write(json_encode($famille));
         } catch (\Exception $e) {
             $response = $response->withStatus(500);
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des familles: " . $e->getMessage()]));
+        } finally {
+            $database = null;
         }
-        $database = null;
-        $response->getBody()->write(json_encode($req));
-        return $response;
 
+        return $response->withHeader('Content-Type', 'application/json');
     }
 
     public static function createFamille(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
-        $cepage = $data['cepage'] ?? null;
-        $annee = $data['annee'] ?? null;
-        $vignoble = $data['vignoble'] ?? null;
-
 
 
         try{
             $database = DatabaseHandler::connexion();
-            $req = "INSERT INTO famille (cepage, annee, vignoble) VALUES ('$cepage', '$annee', '$vignoble')";
-            $result = $database->query($req);
+            $famille = new FamilleEntities($data);
 
 
-            if ($result->rowCount() == 1) {
+            if ($famille->createFamille($database) == 1) {
                 $response->getBody()->write(json_encode(["message" => "famille enregistrée avec succes"]));
             } else {
                 $response = $response->withStatus(401);
@@ -57,25 +45,23 @@ class FamilleModels {
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la création de l'utilisateur: " . $e->getMessage()]));
         }
         $database = null;
-        $response->getBody()->write(json_encode($req));
+
         return $response;
     }
 
     public static function updateFamille(Request $request, Response $response, $args)
     {
+        $id_famille = $args['id'];
         $data = $request->getParsedBody();
-        $cepage = $data['cepage'] ?? null;
-        $annee = $data['annee'] ?? null;
-        $vignoble = $data['vignoble'] ?? null;
-        $id_famille = $data['id_famille'] ?? null;
 
         try {
             $database = DatabaseHandler::connexion();
-            $req = " UPDATE adresse set cepage = '$cepage', annee = '$annee', vignoble ='$vignoble'  WHERE id_famille = '$id_famille'";
-            $req = $database->query($req);
+            $famille = new FamilleEntities($data);
+            $famille->setIdFamille($id_famille);
 
-            if ($req->rowCount() == 1) {
-                $response->getBody()->write(json_encode(["message" => "Famille numero, $id_famille a bien été modifier"]));
+
+            if ($famille->updateFamille($database)) {
+                $response->getBody()->write(json_encode(["message" => "Famille numero".$famille->getIdFamille() ." a bien été modifier"]));
             } else {
                 $response = $response->withStatus(401);
                 $response->getBody()->write(json_encode(["message" => "Échec de la modification."]));
@@ -87,7 +73,6 @@ class FamilleModels {
             $database = null;
         }
 
-        $response->getBody()->write(json_encode($req));
         return $response;
     }
 
