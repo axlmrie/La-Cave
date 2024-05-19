@@ -21,6 +21,15 @@ $app->add(new CorsMiddleware([
     "cache" => 0,
 ]));
 
+$app->add(new CorsMiddleware([
+    "origin" => ["*"],
+    "methods" => ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    "headers.allow" => [],
+    "headers.expose" => [],
+    "credentials" => false,
+    "cache" => 0,
+]));
+
 Settings::loadSettings();
 Routes::loadRoutes($app);
 Routes::logRoutes($app);
@@ -29,6 +38,7 @@ Routes::clientsRoutes($app);
 Routes::commandesRoutes($app);
 Routes::adressesRoutes($app);
 Routes::utilisateursRoutes($app);
+Routes::familleRoutes($app);
 Routes::stockRoutes($app);
 Settings::loadSettings();
 
