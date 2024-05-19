@@ -55,7 +55,6 @@ class ArticleModels {
 
     public static function articleFamille(Request $request, Response $response, $args)
     {
-        $data = $request->getParsedBody();
 
         try {
             $database = DatabaseHandler::connexion();

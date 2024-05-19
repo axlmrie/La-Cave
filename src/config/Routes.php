@@ -34,7 +34,7 @@ class Routes{
     public static function logRoutes($app): void
     {
         $app->group('/log', function (RouteCollectorProxy $group) {
-            $group->post('/login', LogController::class . ':login');
+            $group->get('/login', LogController::class . ':login');
             $group->post('/logout', LogController::class . ':logout');
         });
     }
@@ -64,7 +64,7 @@ class Routes{
         $app->group('/famille', function (RouteCollectorProxy $group) {
             $group->get('/readFamille', FamilleController::class . ':readFamille');
             $group->post('/createFamille', FamilleController::class . ':createFamille');
-            $group->put('/updateFamille', FamilleController::class . ':updateFamille');
+            $group->put('/updateFamille/{id}', FamilleController::class . ':updateFamille');
 
         });
     }
