@@ -25,7 +25,6 @@ class Routes{
     {
         $app->group('', function (RouteCollectorProxy $group) {
             $group->get('/', RoutesController::class . ':world');
-            $group->post('/register', RegisterController::class . ':register');
             $group->get('/testLogin', RoutesController::class . ':testLogin');
             //$group->delete;
             //$group->put;
@@ -88,7 +87,7 @@ class Routes{
     {
 
         $app->group('/clients', function (RouteCollectorProxy $group) {
-
+            $group->post('/register', RegisterController::class . ':register');
             $group->get('/readClient', ClientController::class . ':readClient');
             //$group->post;
             //$group->delete;

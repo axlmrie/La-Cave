@@ -82,7 +82,8 @@ class AdresseEntities {
     }
 
     // Méthode pour mettre à jour l'adresse dans la base de données
-    public function updateAdresse ($database) {
+    public function updateAdresse ($database)
+    {
         $req = $database->prepare("
             UPDATE adresse 
             SET nom_rue = :nom_rue,

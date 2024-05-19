@@ -2,6 +2,9 @@
 
 namespace src\entities;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 class ClientEntities {
     public $id_client;
     public $nom;
@@ -12,15 +15,14 @@ class ClientEntities {
     public $adresse_livraison;
     public $date_suppression;
 
-    public function __construct(){
-        $this->id_client = "";
-        $this->nom = "";
-        $this->prenom = "";
-        $this->mot_de_passe = "";
-        $this->numero_telephone = "";
-        $this->adresse_facturation = "";
-        $this->adresse_livraison = "";
-        $this->date_suppression = "";
+    public function __construct($data = []) {
+        $this->prenom = $data['prenom'] ?? '';
+        $this->nom = $data['nom'] ?? '';
+        $this->mot_de_passe = $data['password'] ?? '';
+        $this->date_suppression = $data['date_suppression'] ?? null;
+        $this->adresse_livraison = $data['adresse_livraison'] ?? '';
+        $this->adresse_facturation = $data['adresse_facturation'] ?? '';
+        $this->numero_telephone = $data['numero_tel'] ?? '';
     }
 
 
@@ -118,6 +120,30 @@ class ClientEntities {
     {
         $this->date_suppression = $date_suppression;
     }
+
+
+    public function register($database)
+    {
+
+
+        $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel) 
+                VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel)");
+
+        $req->bindParam(":prenom", $this->prenom);
+        $req->bindParam(":nom", $this->nom);
+        $req->bindParam(":password", $this->mot_de_passe);
+        $req->bindParam(":date_suppression", $this->date_suppression);
+        $req->bindParam(":adresse_livraison", $this->adresse_livraison);
+        $req->bindParam(":adresse_facturation", $this->adresse_facturation);
+        $req->bindParam(":numero_tel", $this->numero_telephone);
+
+        $req->execute();
+
+        return $req->rowCount() == 1;
+
+    }
+
+
 
 
 }
