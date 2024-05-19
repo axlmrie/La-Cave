@@ -12,5 +12,16 @@ class CommandeController {
         CommandeModels::readCommandes($request, $response, $args);
         return $response;
     }
+    public static function createCommandes(Request $request, Response $response, $args)
+    {
+        CommandeModels::createCommandes($request, $response, $args);
+        return $response;
+    }
+    public static function affichageCommandes(Request $request, Response $response, $args)
+    {
+        CommandeModels::affichageCommandes($request, $response, $args);
+        return $response;
+    }
 
 }
+

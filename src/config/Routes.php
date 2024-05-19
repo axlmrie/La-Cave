@@ -13,6 +13,7 @@ use src\Controllers\RoutesController;
 use src\controllers\ArticleController;
 use src\controllers\RegisterController;
 use src\controllers\ClientController;
+use src\controllers\StockController;
 use src\controllers\UtilisateurController;
 
 
@@ -42,12 +43,9 @@ class Routes{
 
     public static function stockRoutes($app): void
     {
-        $app->group('stock', function (RouteCollectorProxy $group) {
-            $group->put();//modifier stock unitairement
-            $group->put();//modif stock entreprise
-            //$group->post;
-            //$group->delete;
-            //$group->put;
+        $app->group('/stock', function (RouteCollectorProxy $group) {
+            $group->post('/updateStock', StockController::class . ':updateStock');
+
         });
     }
 
@@ -75,8 +73,11 @@ class Routes{
     public static function commandesRoutes($app): void
     {
         $app->group('/commandes', function (RouteCollectorProxy $group) {
+            $group->get('/affichageCommandes', CommandeController::class . ':affichageCommandes');
             $group->get('/readCommandes', CommandeController::class . ':readCommandes');
-            //$group->post;
+            $group->post('/createCommandes', CommandeController::class . ':createCommandes');
+            $group->post('/deleteCommande', CommandeController::class . ':deleteCommande');
+
             //$group->delete;
             //$group->put;
 
@@ -100,6 +101,8 @@ class Routes{
     {
         $app->group('/articles', function (RouteCollectorProxy $group) {
             $group->get('/readArticle', ArticleController::class . ':readArticle');
+            $group->get('/stockArticleNeg', ArticleController::class . ':stockArticleNeg');
+            $group->get('/articleFamille', ArticleController::class . ':articleFamille');
             //$group->post;
             //$group->delete;
             //$group->put;

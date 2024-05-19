@@ -88,6 +88,7 @@ class ComposerStaticInit2f29bafe6f269c855d7effcff495df55
         array (
             0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
             1 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+
         ),
         'Tuupola\\Http\\Factory\\' => 
         array (

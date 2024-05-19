@@ -12,12 +12,12 @@ class ArticleModels {
     {
         try {
             $database = DatabaseHandler::connexion();
-            $req = $database->prepare("SELECT * FROM articles WHERE stock < 1");
+            $req = $database->prepare("SELECT * FROM articles WHERE stock > 1");
             $req->execute();
 
             if ($req->rowCount() > 0) {
                 $articles = $req->fetchAll(\PDO::FETCH_ASSOC);
-                $response->getBody()->write(json_encode(["articles" => $articles]));
+                //$response->getBody()->write(json_encode(["articles" => $articles]));
             } else {
                 $response = $response->withStatus(404);
                 $response->getBody()->write(json_encode(["message" => "Aucun article trouvé avec un stock inférieur à 1"]));
@@ -27,7 +27,54 @@ class ArticleModels {
             $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
         }
         $database = null;
-        $response->getBody()->write(json_encode($req));
+        $response->getBody()->write(json_encode($articles));
+        return $response;
+    }
+    public static function stockArticleNeg(Request $request, Response $response, $args)
+    {
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = $database->prepare("SELECT * FROM articles WHERE stock < 1");
+            $req->execute();
+
+            if ($req->rowCount() > 0) {
+                $articles = $req->fetchAll(\PDO::FETCH_ASSOC);
+                //$response->getBody()->write(json_encode(["articles" => $articles]));
+            } else {
+                $response = $response->withStatus(404);
+                $response->getBody()->write(json_encode(["message" => "Aucun article trouvé avec un stock inférieur à 1"]));
+            }
+        } catch (\Exception $e) {
+            $response = $response->withStatus(500);
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des articles: " . $e->getMessage()]));
+        }
+        $database = null;
+        $response->getBody()->write(json_encode($articles));
+        return $response;
+    }
+
+    public static function articleFamille(Request $request, Response $response, $args)
+    {
+        $data = $request->getParsedBody();
+
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = $database->prepare("Select * from articles INNER JOIN famille ON articles.famille = famille.id_famille ;");
+            $req->execute();
+
+            if ($req->rowCount() > 0) {
+                $commandes = $req->fetchAll(\PDO::FETCH_ASSOC);
+                //$response->getBody()->write(json_encode(["commandes" => $commandes]));
+            } else {
+                $response = $response->withStatus(404);
+                $response->getBody()->write(json_encode(["message" => "Aucune commandes trouvées "]));
+            }
+        } catch (\Exception $e) {
+            $response = $response->withStatus(500);
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des commandes: " . $e->getMessage()]));
+        }
+        $database = null;
+        $response->getBody()->write(json_encode($commandes));
         return $response;
     }
 }
