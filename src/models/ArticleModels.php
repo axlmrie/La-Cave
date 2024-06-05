@@ -9,18 +9,18 @@ use src\handlers\DatabaseHandler;
 
 class ArticleModels {
 
-    public static function readArticle(Request $request, Response $response, $args)
+    public static function readArticle()
     {
         $database = DatabaseHandler::connexion();
         return ArticleEntities::readArticle($database);
     }
-    public static function stockArticleNeg(Request $request, Response $response, $args)
+    public static function stockArticleNeg()
     {
         $database = DatabaseHandler::connexion();
         return ArticleEntities::stockArticleNeg($database);
     }
 
-    public static function articleFamille(Request $request, Response $response, $args)
+    public static function articleFamille()
     {
         $database = DatabaseHandler::connexion();
         return ArticleEntities::articleFamille($database);

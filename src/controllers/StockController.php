@@ -12,7 +12,9 @@ class StockController {
 
     public function updateStock(Request $request, Response $response, $args)
     {
-        $results = StockModels::updateStock($request, $response, $args);
+        $id = $args['id'];
+        $data = $request->getParsedBody();
+        $results = StockModels::updateStock($data,$id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 }
