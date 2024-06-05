@@ -10,27 +10,29 @@ use src\entities\AdresseEntities;
 class AdresseModels {
 
 
-    public static function updateAdresse(Request $request, Response $response, $args)
+    public static function updateAdresse($data, $id)
     {
-        $id_adresse = $args['id'];
-        $data = $request->getParsedBody();
 
         $database = DatabaseHandler::connexion();
         $adresse = new AdresseEntities($data);
-        $adresse->setIdAdresse($id_adresse);
-        $adresse->updateAdresse($database);
+        $adresse->setIdAdresse($id);
+        $success = $adresse->updateAdresse($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Adresse mise à jour avec succès' : 'Erreur lors de la création de la famille'
+        ];
 
-        return $response;
     }
 
-    public static function createAdresse(Request $request, Response $response, $args)
+    public static function createAdresse($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $adresse = new AdresseEntities($data);
-        $adresse->createAdresse($database);
-
-        return $response;
+        $success = $adresse->createAdresse($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Adresse créée avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
 

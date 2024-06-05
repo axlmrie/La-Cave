@@ -10,13 +10,16 @@ use src\models\AdresseModels;
 class AdresseController {
     public static function updateAdresse(Request $request, Response $response, $args)
     {
-        $results = AdresseModels::updateAdresse($request, $response, $args);
+        $data = $request->getParsedBody();
+        $id = $args['id'];
+        $results = AdresseModels::updateAdresse($data,$id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 
     public static function createAdresse(Request $request, Response $response, $args)
     {
-        $results = AdresseModels::createAdresse($request, $response, $args);
+        $data = $request->getParsedBody();
+        $results = AdresseModels::createAdresse($data);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 
