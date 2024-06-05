@@ -17,7 +17,7 @@ class LogModels {
 
         try{
         $database = DatabaseHandler::connexion();
-        $req = "SELECT * FROM utilisateurs WHERE username = '$username' AND password = '$password'";
+        $req = "SELECT * FROM clients WHERE mail = '$username' AND password = '$password'";
         $result = $database->query($req);
 
 
