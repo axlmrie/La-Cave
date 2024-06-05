@@ -15,7 +15,8 @@ class CommandeController {
     }
     public static function createCommandes(Request $request, Response $response, $args)
     {
-        $results = CommandeModels::createCommande($request, $response, $args);
+        $data = $request->getParsedBody();
+        $results = CommandeModels::createCommande($data);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
     public static function affichageCommandes(Request $request, Response $response, $args)
@@ -26,7 +27,9 @@ class CommandeController {
 
     public static function deleteCommandes(Request $request, Response $response, $args)
     {
-        $results = CommandeModels::deleteCommande($request, $response, $args);
+        $data = $request->getParsedBody();
+        $id = $args['id'];
+        $results = CommandeModels::deleteCommande($data,$id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 

@@ -27,13 +27,16 @@ class ArticleController {
 
     public static function createArticle(Request $request, Response $response, $args)
     {
-        $results = ArticleModels::createArticle($request, $response, $args);
+        $data = $request->getParsedBody();
+        $results = ArticleModels::createArticle($data);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 
     public static function updateArticle(Request $request, Response $response, $args)
     {
-        $results = ArticleModels::updateArticle($request, $response, $args);
+        $data = $request->getParsedBody();
+        $id = $args['id'];
+        $results = ArticleModels::updateArticle($data,$id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 

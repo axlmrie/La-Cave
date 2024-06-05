@@ -106,6 +106,8 @@ class UtilisateurEntities {
         $req->bindParam(":date_suppression", $this->date_suppression);
 
         $req->execute();
+
+        return $req;
     }
 
 

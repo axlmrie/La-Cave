@@ -16,13 +16,16 @@ class UtilisateurController {
 
     public static function createUtilisateur(Request $request, Response $response, $args)
     {
+        $data = $request->getParsedBody();
         $results = UtilisateurModels::createUtilisateur($request, $response, $args);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 
     public static function updateUtilisateur(Request $request, Response $response, $args)
     {
-        $results = UtilisateurModels::updateUtilisateur($request, $response, $args);
+        $data = $request->getParsedBody();
+        $id = $args['id'];
+        $results = UtilisateurModels::updateUtilisateur($data,$id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 

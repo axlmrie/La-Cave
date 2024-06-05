@@ -29,21 +29,28 @@ class ArticleModels {
         return $response;
     }
 
-    public static function createArticle(Request $request, Response $response, $args)
+    public static function createArticle($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $article = new ArticleEntities($data);
-        $article->createArticle($database);
-        return $response;
+        $success = $article->createArticle($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Article mis à jour avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
-    public static function updateArticle(Request $request, Response $response, $args)
+    public static function updateArticle($data,$id)
     {
-        $data = $request->getParsedBody();
+
         $database = DatabaseHandler::connexion();
         $article = new ArticleEntities($data);
-        $article->updateArticle($database);
-        return $response;
+        $article->setIdArticle($id);
+        $success = $article->updateArticle($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Article mis à jour avec succès' : 'Erreur lors de la création de la famille'
+        ];
+
     }
 }

@@ -15,25 +15,27 @@ class FournisseurModels {
         return $response;
     }
 
-    public static function createFournisseur(Request $request, Response $response, $args)
+    public static function createFournisseur($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $fournisseur = new FournisseurEntities($data);
-        $fournisseur->createFournisseur($database);
-        return $response;
+        $success = $fournisseur->createFournisseur($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Fournisseur créé avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
-    public static function updateFournisseur(Request $request, Response $response, $args)
+    public static function updateFournisseur($data,$id)
     {
-        $id_fournisseur = $args['id'];
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $fournisseur = new FournisseurEntities($data);
-        $fournisseur->setIdFournisseur($id_fournisseur);
-        $fournisseur->updateFournisseur($database);
-
-        return $response;
+        $fournisseur->setIdFournisseur($id);
+        $success = $fournisseur->updateFournisseur($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Fournisseur mis à jour avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
 

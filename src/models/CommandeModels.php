@@ -16,26 +16,27 @@ class CommandeModels {
         return $response;
     }
 
-    public static function createCommande(Request $request, Response $response, $args)
+    public static function createCommande($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $commande = new CommandeEntities($data);
-        $commande->createCommande($database);
-        return $response;
+        $success = $commande->createCommande($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Commande créée avec succès' : 'Erreur lors de la mise à jour de la famille'
+        ];
     }
-    public static function deleteCommande(Request $request, Response $response, $args)
+    public static function deleteCommande($data, $id)
     {
-        $id_commande = $args['id'];
-        $data = $request->getParsedBody();
-
         $database = DatabaseHandler::connexion();
         $commande = new CommandeEntities($data);
-        $commande->setIdCommande($id_commande);
+        $commande->setIdCommande($id);
         $commande->setDateSuppression(date('Y-m-d H:i:s'));
-        $commande->deleteCommande($database);
-
-        return $response;
+        $success = $commande->deleteCommande($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Comande mise à jour avec succès' : 'Erreur lors de la mise à jour de la famille'
+        ];
 
     }
     public static function affichageCommandes(Request $request, Response $response, $args)

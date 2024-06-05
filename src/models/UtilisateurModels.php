@@ -11,7 +11,6 @@ class UtilisateurModels
 {
     public static function readUtilisateurs(Request $request, Response $response, $args)
     {
-
         $database = DatabaseHandler::connexion();
         UtilisateurEntities::readUtilisateur($database);
         return $response;
@@ -22,20 +21,25 @@ class UtilisateurModels
         $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $utilisateur = new UtilisateurEntities($data);
-        $utilisateur->createUtilisateur($database);
-        return $response;
+        $success = $utilisateur->createUtilisateur($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Famille créée avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
-    public static function updateUtilisateur(Request $request, Response $response, $args)
+    public static function updateUtilisateur($data,$id)
     {
-        $id_utilisateur = $args['id'];
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $utilisateur = new UtilisateurEntities($data);
-        $utilisateur->setIdUtilisateur($id_utilisateur);
-        $utilisateur->updateUtilisateur($database);
+        $utilisateur->setIdUtilisateur($id);
+        $success = $utilisateur->updateUtilisateur($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? ' créée avec succès' : 'Erreur lors de la création de la famille'
+        ];
 
-        return $response;
+
     }
 
 
