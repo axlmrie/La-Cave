@@ -9,21 +9,20 @@ use src\handlers\DatabaseHandler;
 
 class UtilisateurModels
 {
-    public static function readUtilisateurs(Request $request, Response $response, $args)
+    public static function readUtilisateurs()
     {
         $database = DatabaseHandler::connexion();
         return UtilisateurEntities::readUtilisateur($database);
     }
 
-    public static function createUtilisateur(Request $request, Response $response, $args)
+    public static function createUtilisateur($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $utilisateur = new UtilisateurEntities($data);
         $success = $utilisateur->createUtilisateur($database);
         return [
             'status' => $success ? 'success' : 'error',
-            'message' => $success ? 'Famille créée avec succès' : 'Erreur lors de la création de la famille'
+            'message' => $success ? 'Utilisateur créé avec succès' : 'Erreur lors de la création de la famille'
         ];
     }
 
@@ -35,7 +34,7 @@ class UtilisateurModels
         $success = $utilisateur->updateUtilisateur($database);
         return [
             'status' => $success ? 'success' : 'error',
-            'message' => $success ? ' créée avec succès' : 'Erreur lors de la création de la famille'
+            'message' => $success ? ' Utilisateur mis à jour avec succès' : 'Erreur lors de la création de la famille'
         ];
 
 

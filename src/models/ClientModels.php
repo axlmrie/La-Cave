@@ -8,11 +8,12 @@ use src\entities\ClientEntities;
 use src\handlers\DatabaseHandler;
 
 class ClientModels {
-    public static function readClient(Request $request, Response $response, $args)
+    public static function readClient()
     {
         $database = DatabaseHandler::connexion();
         return ClientEntities::readClient($database);
 
     }
+
 
 }

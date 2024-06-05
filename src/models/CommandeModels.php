@@ -9,7 +9,7 @@ use src\handlers\DatabaseHandler;
 
 class CommandeModels {
 
-    public static function readCommandes(Request $request, Response $response, $args)
+    public static function readCommandes()
     {
         $database = DatabaseHandler::connexion();
         return CommandeEntities::readCommandes($database);
@@ -38,10 +38,9 @@ class CommandeModels {
         ];
 
     }
-    public static function affichageCommandes(Request $request, Response $response, $args)
+    public static function affichageCommandes()
     {
         $database = DatabaseHandler::connexion();
-        CommandeEntities::affichageCommandes($database);
-        return $response;
+        return CommandeEntities::affichageCommandes($database);
     }
 }

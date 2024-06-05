@@ -12,17 +12,17 @@ class LogModels {
 
 
         $data = $request->getParsedBody();
-        $username = $data['username'] ?? null;
+        $mail = $data['mail'] ?? null;
         $password = $data['password'] ?? null;
 
         try{
         $database = DatabaseHandler::connexion();
-        $req = "SELECT * FROM clients WHERE mail = '$username' AND password = '$password'";
+        $req = "SELECT * FROM clients WHERE mail = '$mail' AND password = '$password'";
         $result = $database->query($req);
 
 
         if ($result->rowCount() == 1) {
-            $response->getBody()->write(json_encode(["message" => "Authentification réussie ! Bienvenue, $username"]));
+            $response->getBody()->write(json_encode(["message" => "Authentification réussie ! Bienvenue, $mail"]));
         } else {
             $response = $response->withStatus(401);
             $response->getBody()->write(json_encode(["message" => "Échec de l'authentification. Veuillez vérifier vos informations d'identification."]));

@@ -13,7 +13,7 @@ class LogController
 
     public static function login(Request $request, Response $response, $args)
     {
-         $results = logModels::login($request, $response, $args);
+        $results = logModels::login($request, $response, $args);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
 

@@ -10,6 +10,7 @@ use src\models\ClientModels;
 class ClientController {
     public static function readClient(Request $request, Response $response, $args)
     {
+
         $results = ClientModels::readClient($request, $response, $args);
         return ResponseHandler::Response($request, $response, (array)$results);
     }

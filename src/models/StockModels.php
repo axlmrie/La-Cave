@@ -10,16 +10,19 @@ use src\handlers\DatabaseHandler;
 class StockModels {
 
 
-    public static function updateStock(Request $request, Response $response, $args)
+    public static function updateStock($data,$id)
     {
-        $id_article = $args['id'];
-        $data = $request->getParsedBody();
+
         $database = DatabaseHandler::connexion();
         $stockArticle = new ArticleEntities($data);
-        $stockArticle->setIdArticle($id_article);
-        $stockArticle->updateStock($database);
+        $stockArticle->setIdArticle($id);
+        $success = $stockArticle->updateStock($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? ' Stock mis à jour avec succès' : 'Erreur lors de la création de la famille'
+        ];
 
-        return $response;
+
     }
 
 

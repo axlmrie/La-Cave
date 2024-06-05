@@ -8,7 +8,7 @@ use src\entities\FournisseurEntities;
 use src\handlers\DatabaseHandler;
 
 class FournisseurModels {
-    public static function readFournisseurs(Request $request, Response $response, $args)
+    public static function readFournisseurs()
     {
         $database = DatabaseHandler::connexion();
         return FournisseurEntities::readFournisseurs($database);
