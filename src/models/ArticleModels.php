@@ -12,21 +12,18 @@ class ArticleModels {
     public static function readArticle(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        ArticleEntities::readArticle($database);
-        return $response;
+        return ArticleEntities::readArticle($database);
     }
     public static function stockArticleNeg(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        ArticleEntities::stockArticleNeg($database);
-        return $response;
+        return ArticleEntities::stockArticleNeg($database);
     }
 
     public static function articleFamille(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        ArticleEntities::articleFamille($database);
-        return $response;
+        return ArticleEntities::articleFamille($database);
     }
 
     public static function createArticle($data)

@@ -12,8 +12,7 @@ class UtilisateurModels
     public static function readUtilisateurs(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        UtilisateurEntities::readUtilisateur($database);
-        return $response;
+        return UtilisateurEntities::readUtilisateur($database);
     }
 
     public static function createUtilisateur(Request $request, Response $response, $args)

@@ -12,8 +12,7 @@ class CommandeModels {
     public static function readCommandes(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        CommandeEntities::readCommandes($database);
-        return $response;
+        return CommandeEntities::readCommandes($database);
     }
 
     public static function createCommande($data)

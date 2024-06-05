@@ -11,8 +11,7 @@ class ClientModels {
     public static function readClient(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        ClientEntities::readClient($database);
-        return $response;
+        return ClientEntities::readClient($database);
 
     }
 

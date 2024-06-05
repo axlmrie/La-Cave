@@ -11,8 +11,7 @@ class FournisseurModels {
     public static function readFournisseurs(Request $request, Response $response, $args)
     {
         $database = DatabaseHandler::connexion();
-        FournisseurEntities::readFournisseurs($database);
-        return $response;
+        return FournisseurEntities::readFournisseurs($database);
     }
 
     public static function createFournisseur($data)
