@@ -8,31 +8,33 @@ use src\entities\FamilleEntities;
 use src\handlers\DatabaseHandler;
 
 class FamilleModels {
-    public static function readFamille(Request $request, Response $response, $args)
+    public static function readFamille()
     {
         $database = DatabaseHandler::connexion();
-        FamilleEntities::readFamille($database);
-        return $response;
+        return FamilleEntities::readFamille($database);
     }
 
-    public static function createFamille(Request $request, Response $response, $args)
+    public static function createFamille($data)
     {
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $famille = new FamilleEntities($data);
-        $famille->createFamille($database);
-        return $response;
+        $success = $famille->createFamille($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Famille créée avec succès' : 'Erreur lors de la création de la famille'
+        ];
     }
 
-    public static function updateFamille(Request $request, Response $response, $args)
+    public static function updateFamille($data, $id)
     {
-        $id_famille = $args['id'];
-        $data = $request->getParsedBody();
         $database = DatabaseHandler::connexion();
         $famille = new FamilleEntities($data);
-        $famille->setIdFamille($id_famille);
-        $famille->updateFamille($database);
-        return $response;
+        $famille->setIdFamille($id);
+        $success = $famille->updateFamille($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Famille mise à jour avec succès' : 'Erreur lors de la mise à jour de la famille'
+        ];
     }
 
 }
