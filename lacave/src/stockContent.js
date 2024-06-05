@@ -1,6 +1,7 @@
 import { render } from "@testing-library/react";
 import StockActuel from "./stockActuel";
 import Rupture from "./rupture";
+import Commande from "./commande";
 
 const StockContent = ()=>{
     return (
@@ -9,7 +10,7 @@ const StockContent = ()=>{
         <div className='content'>
           <StockActuel/>
             <div>
-                <h2>Stock en commande</h2>
+                <Commande/>
             </div>
             <div>
                 <Rupture/>

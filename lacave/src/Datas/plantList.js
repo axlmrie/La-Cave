@@ -1,98 +1,47 @@
-import monstera from '../Assets/monstera.jpg'
-import lyrata from '../Assets/lyrata.jpg'
-import pothos from '../Assets/pothos.jpg'
-import succulent from '../Assets/succulent.jpg'
-import olivier from '../Assets/olivier.jpg'
-import basil from '../Assets/basil.jpg'
-import mint from '../Assets/mint.jpg'
-import calathea from '../Assets/calathea.jpg'
-import cactus from '../Assets/cactus.jpg'
+import digestif from '../Assets/digestif.jpg';
+import vin_rosé from '../Assets/vinRose.jpg';
+import champagne from '../Assets/champagne.jpg';
+import vin_rouge from '../Assets/vinRouge.jpg';
+import vin_blanc from '../Assets/vinBlanc.jpg';
+import vin_pétillant from '../Assets/vinPetillant.jpg'; // Vérifiez que cette image existe
+import categories from '../Components/Categories';
 
-export const plantList = [
-	{
-		name: 'monstera',
-		category: 'classique',
-		id: '1ed',
-		light: 2,
-		water: 3,
-		cover: monstera,
-		price: 15
-	},
-	{
-		name: 'ficus lyrata',
-		category: 'classique',
-		id: '2ab',
-		light: 3,
-		water: 1,
-		cover: lyrata,
-		price: 16
-	},
 
-	{
-		name: 'pothos argenté',
-		category: 'classique',
-		id: '3sd',
-		light: 1,
-		water: 2,
-		cover: pothos,
+const imageMapping = {
+    "digestif": digestif,
+    "vin rosé": vin_rosé,
+    "champagne": champagne,
+    "vin rouge": vin_rouge,
+    "vin blanc": vin_blanc,
+    "vin pétillant": vin_pétillant
+    // Ajoutez d'autres mappings si nécessaire
+};
 
-		price: 9
-	},
-	{
-		name: 'calathea',
-		category: 'classique',
-		id: '4kk',
-		light: 2,
-		water: 3,
-		cover: calathea,
+export const plantList = [];
 
-		price: 20
-	},
-	{
-		name: 'olivier',
-		category: 'extérieur',
-		id: '5pl',
-		light: 3,
-		water: 1,
-		cover: olivier,
-		price: 25
-	},
-
-	{
-		name: 'cactus',
-		category: 'plante grasse',
-		id: '8fp',
-		light: 2,
-		water: 1,
-		cover: cactus,
-		price: 6
-	},
-	{
-		name: 'basilique',
-		category: 'extérieur',
-		id: '7ie',
-		light: 2,
-		water: 3,
-		cover: basil,
-		price: 5
-	},
-	{
-		name: 'succulente',
-		category: 'plante grasse',
-		id: '9vn',
-		light: 2,
-		water: 1,
-		cover: succulent,
-		price: 8
-	},
-
-	{
-		name: 'menthe',
-		category: 'extérieur',
-		id: '6uo',
-		light: 2,
-		water: 2,
-		cover: mint,
-		price: 4
-	}
-]
+export const creaVinList = () => {
+    return fetch('http://localhost:8888/articles/articleFamille')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(element => {
+                const imageName = imageMapping[element.cepage];
+                if (!imageName) {
+                    console.warn(`No image found for cépage: ${element.cepage}`);
+                }
+                plantList.push({
+                    name: element.designation,
+                    category: element.cepage,
+                    id: element.id_article,
+                    price: element.prix,
+                    stock: element.stock,
+                    reference: element.reference,
+                    conditionnement: element.conditionnement,
+                    cover:imageName,
+                    // Vous pouvez ajuster cette ligne pour des images dynamiques si nécessaire
+                });
+            });
+        })
+        .catch(error => {
+            console.error("Erreur lors du chargement des données :", error);
+        });
+};

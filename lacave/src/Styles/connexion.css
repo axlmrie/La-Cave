@@ -1,0 +1,35 @@
+.connexion label {
+    color:black;
+}
+
+.connexion h1{
+    color:black;
+}
+
+.inscription label {
+    color:black;
+}
+
+.inscription h1{
+    color:black;
+}
+
+.connexion div{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.InsDiv{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.css-khl8b7-container{
+    width: 20%;
+}

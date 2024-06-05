@@ -2,30 +2,28 @@ import { useState, useEffect } from "react";
 
 const Rupture = () => {
   class Articles {
-    constructor(type, domaine, fournisseur, conditionnement, annee, stock) {
-      this.type = type;
-      this.domaine = domaine;
-      this.fournisseur = fournisseur;
-      this.conditionnement = conditionnement;
-      this.annee = annee;
+    constructor(reference, designation, stock, conditionnement, prix) {
+      this.reference = reference;
+      this.designation = designation;
       this.stock = stock;
+      this.conditionnement = conditionnement;
+      this.prix = prix;
     }
   }
 
   const createRuptureTab = async () => {
     const ruptureTab = [];
-    const response = await fetch('http://localhost:8000/donnees');
+    const response = await fetch('http://localhost:8888/articles/stockArticleNeg');
     const data = await response.json();
-    setLenRupture(data.rowCount);
-    data.rows.forEach((element) => {
+    setLenRupture(data.length);
+    data.forEach((element) => {
       ruptureTab.push(
         new Articles(
-          element.type_de_vin,
-          element.nom_de_domaine,
-          element.nom_de_fournisseur,
+          element.reference,
+          element.designation,
+          element.stock,
           element.conditionnement,
-          element.annee_de_production,
-          element.quantite
+          element.prix
         )
       );
     });
@@ -104,12 +102,41 @@ const Rupture = () => {
     setIsOrdering(true);
   };
 
-  const handleOrderSubmit = () => {
-    // Logique de commande, vous pouvez envoyer les données de commande au serveur ici
-    console.log(`Commande passée pour ${quantity} unités de ${selectedArticle.type}`);
-    // Réinitialiser l'état après la commande
-    setIsOrdering(false);
-    setQuantity(0);
+  const handleOrderSubmit = async (produit) => {
+    const updatedStock = selectedArticle.stock + quantity;
+    const body = {
+      id: selectedArticle.id_article,
+      stock: updatedStock
+    };
+
+    try {
+      const response = await fetch("http://localhost:8888/stock/updateStock/", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if (response.ok) {
+        alert(`Commande passée pour ${quantity} unités de ${selectedArticle.designation}`);
+        // Update local state
+        setSelectedArticle((prevArticle) => ({
+          ...prevArticle,
+          stock: updatedStock
+        }));
+        // Optionally, refresh the rupture list
+        createRuptureTab();
+        // Reset state after order
+        setIsOrdering(false);
+        setQuantity(0);
+      } else {
+        alert('Erreur lors de la mise à jour du stock');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert('Erreur lors de la mise à jour du stock');
+    }
   };
 
   const handleQuantityChange = (event) => {
@@ -121,15 +148,12 @@ const Rupture = () => {
       {selectedArticle ? (
         <div className="details">
           <h2>Détails de l'article</h2>
-          <p><strong>Type:</strong> {selectedArticle.type}</p>
-          <p><strong>Domaine:</strong> {selectedArticle.domaine}</p>
-          <p><strong>Fournisseur:</strong> {selectedArticle.fournisseur}</p>
+          <p><strong>Type:</strong> {selectedArticle.designation}</p>
           <p><strong>Conditionnement:</strong> {selectedArticle.conditionnement}</p>
-          <p><strong>Année:</strong> {selectedArticle.annee}</p>
           <p><strong>Stock:</strong> {selectedArticle.stock}</p>
           <button onClick={handleBackClick}>Retour</button>
           {!isOrdering ? (
-            <button onClick={handleOrderClick}>Commander</button>
+            <button onClick={handleOrderClick(selectedArticle)}>Commander</button>
           ) : (
             <div>
               <input
@@ -145,7 +169,7 @@ const Rupture = () => {
         </div>
       ) : (
         <>
-          <h2>Stock Actuelle</h2>
+          <h2>Stock en rupture</h2>
           <div>
             <label htmlFor="rowsPerPage">Lignes par page: </label>
             <select id="rowsPerPage" value={rowsPerPage} onChange={handleRowsPerPageChange}>
@@ -157,25 +181,23 @@ const Rupture = () => {
           <table>
             <thead>
               <tr>
-                <th onClick={() => requestSort('type')}>Type</th>
-                <th onClick={() => requestSort('domaine')}>Domaine</th>
-                <th onClick={() => requestSort('annee')}>Année</th>
-                <th onClick={() => requestSort('conditionnement')}>Conditionnement</th>
-                <th onClick={() => requestSort('fournisseur')}>Fournisseur</th>
+                <th onClick={() => requestSort('reference')}>Référence</th>
+                <th onClick={() => requestSort('designation')}>Désignation</th>
                 <th onClick={() => requestSort('stock')}>Stock</th>
+                <th onClick={() => requestSort('conditionnement')}>Conditionnement</th>
+                <th onClick={() => requestSort('prix')}>Prix</th>
               </tr>
             </thead>
             <tbody>
               {rupture && rupture.length > 0 && displayPage().map((article, index) => (
                 <tr key={index} onClick={() => handleArticleClick(article)}>
-                  <td>{article.type}</td>
-                  <td>{article.domaine}</td>
-                  <td>{article.annee}</td>
-                  <td>{article.conditionnement}</td>
-                  <td>{article.fournisseur}</td>
+                  <td>{article.reference}</td>
+                  <td>{article.designation}</td>
                   <td>
                     {article.stock} {article.stock < 10 && <span style={{color: 'red'}}>⚠️</span>}
                   </td>
+                  <td>{article.conditionnement}</td>
+                  <td>{article.prix} €</td>
                 </tr>
               ))}
             </tbody>

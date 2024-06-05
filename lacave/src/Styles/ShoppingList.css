@@ -3,10 +3,40 @@
     padding: 32px;
     display: flex;
     flex-wrap:wrap;
-    max-width:800px;
+    max-width:90vw;
+    align-items: flex-start;
 }
+
+
 
 .lmj-shopping-list{
     width: 100%;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: auto;
+    border: none;
+    background-color: #8C1415;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-weight: bold;
+}

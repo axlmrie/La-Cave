@@ -79,6 +79,7 @@ input {
 
 table {
   color: white;
+  width:80vw ;
 }
 
 select{
@@ -116,7 +117,7 @@ tbody tr :nth-child(even){
 }
 
 .content div{
-  min-width: 30vw;
+  min-width: 60vw;
   min-height: auto;
 }
 

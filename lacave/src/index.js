@@ -9,6 +9,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Connexion from './Components/connexion';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,10 @@ const router = createBrowserRouter([
   {path : "/inventaire",
   element : <Inventaire/>},
   {path : "/boutique",
-    element : <Boutique/>}
+    element : <Boutique/>},
+    {path: "/connexion",
+      element : <Connexion/>
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

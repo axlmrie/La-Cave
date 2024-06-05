@@ -13,15 +13,46 @@
     flex-direction: column;
     text-transform: capitalize;
     position: relative;
+    width: 250px;
 }
 
 .lmj-plant-item-price {
     position: absolute;
     border-radius: 20px 20px 20px 0;
-    background-color: #31b472;
+    background-color: #8C1415;
     color: white;
     padding: 15px;
     right: 0;
     top: 0;
     font-weight: 500;
+}
+.lmj-plant-item-image-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.lmj-plant-item-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.lmj-plant-item-cart-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        opacity: 0;
+        filter: invert(1); /* Inverser les couleurs pour rendre le noir blanc */
+        transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.lmj-plant-item-image-container:hover .lmj-plant-item-cover {
+    filter: brightness(50%);
+}
+
+.lmj-plant-item-image-container:hover .lmj-plant-item-cart-icon {
+    opacity: 1;
 }

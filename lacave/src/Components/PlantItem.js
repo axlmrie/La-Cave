@@ -1,24 +1,26 @@
-import CareScale from "./CareScale";
-import '../Styles/PlantItem.css'
+import '../Styles/PlantItem.css';
+import cartIcon from '../Assets/panier.png'; // Assurez-vous d'avoir une image de panier
 
-
-
-function handleClick(plantName){
-    alert(`vous voulez acheter 1 ${plantName}? Très bon choix`)
+function handleClick(plantName) {
+    alert(`Vous voulez acheter 1 ${plantName} ? Très bon choix`);
 }
 
-function PlantItem({id,cover,name,water,light,price}){
-    return(
-        <li className="lmj-plant-item" onClick={() => handleClick(name)}>
+function PlantItem({ cover, name, conditionnement, reference, price, addToCart }) {
+    console.log(cover) 
+    return (
+        <li className="lmj-plant-item">
             <span className="lmj-plant-item-price">{price}€</span>
-            <img className="lmj-plant-item-cover" src={cover} alt={`${name} cover`}/>
+            <div className="lmj-plant-item-image-container" onClick={() => addToCart(name, price)}>
+                <img className="lmj-plant-item-cover" src={cover} alt={`${name} cover`} />
+                <img className="lmj-plant-item-cart-icon" src={cartIcon} alt="Add to cart" />
+            </div>
             {name}
             <div>
-                <CareScale CareType='water' scaleValue={water}/>
-                <CareScale CareType='light' scaleValue={light}/>
+                <p>Conditionnement : {conditionnement}</p>
+                <p>Référence : {reference}</p>
             </div>
         </li>
-    )
+    );
 }
 
-export default PlantItem
+export default PlantItem;

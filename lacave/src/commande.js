@@ -1,33 +1,33 @@
 import { useState, useEffect } from "react";
 
-const StockActuel = () => {
+const Commande = () => {
   class Articles {
-    constructor(reference, designation, stock, conditionnement, prix) {
-      this.reference = reference;
-      this.designation = designation;
-      this.stock = stock;
-      this.conditionnement = conditionnement;
-      this.prix = prix;
+    constructor(article, quantite, client, fournisseur, date_commande) {
+      this.article = article;
+      this.quantite = quantite;
+      this.client = client;
+      this.fournisseur = fournisseur;
+      this.date_commande = date_commande;
     }
   }
 
   const createRuptureTab = async () => {
     const ruptureTab = [];
-    const response = await fetch('http://localhost:8888/articles/readArticle');
+    const response = await fetch('http://localhost:8888/commandes/affichageCommandes');
     const data = await response.json();
     setLenRupture(data.length);
     data.forEach((element) => {
-      console.log(element)
       ruptureTab.push(
         new Articles(
-          element.reference,
           element.designation,
-          element.stock,
-          element.conditionnement,
-          element.prix
+          element.quantite,
+          element.nom_client,
+          element.nom_fournisseur,
+          element.date_commande
         )
       );
     });
+    console.log(ruptureTab)
     setRupture(ruptureTab);
   };
 
@@ -124,8 +124,8 @@ const StockActuel = () => {
           <p><strong>Domaine:</strong> {selectedArticle.domaine}</p>
           <p><strong>Fournisseur:</strong> {selectedArticle.fournisseur}</p>
           <p><strong>Conditionnement:</strong> {selectedArticle.conditionnement}</p>
-          <p><strong>Année:</strong> {selectedArticle.annee}</p>
-          <p><strong>Stock:</strong> {selectedArticle.stock}</p>
+          <p><strong>nom du fournisseur:</strong> {selectedArticle.fournisseur}</p>
+          <p><strong>Date de commande:</strong> {selectedArticle.date_commande}</p>
           <button onClick={handleBackClick}>Retour</button>
           {!isOrdering ? (
             <button onClick={handleOrderClick}>Commander</button>
@@ -144,7 +144,7 @@ const StockActuel = () => {
         </div>
       ) : (
         <>
-          <h2>Stock Actuelle</h2>
+          <h2>Commande</h2>
           <div>
             <label htmlFor="rowsPerPage">Lignes par page: </label>
             <select id="rowsPerPage" value={rowsPerPage} onChange={handleRowsPerPageChange}>
@@ -156,23 +156,23 @@ const StockActuel = () => {
           <table>
             <thead>
               <tr>
-              <th onClick={() => requestSort('reference')}>Référence</th>
-                <th onClick={() => requestSort('designation')}>Désignation</th>
-                <th onClick={() => requestSort('stock')}>Stock</th>
-                <th onClick={() => requestSort('conditionnement')}>Conditionnement</th>
-                <th onClick={() => requestSort('prix')}>Prix</th>
+                <th onClick={() => requestSort('article')}>Articles</th>
+                <th onClick={() => requestSort('quantite')}>quantite</th>
+                <th onClick={() => requestSort('client')}>Nom client</th>
+                <th onClick={() => requestSort('fournisseur')}>fournisseur</th>
+                <th onClick={() => requestSort('date')}>Date de la commande</th>
               </tr>
             </thead>
             <tbody>
-            {rupture && rupture.length > 0 && displayPage().map((article, index) => (
+              {rupture && rupture.length > 0 && displayPage().map((article, index) => (
                 <tr key={index} onClick={() => handleArticleClick(article)}>
-                  <td>{article.reference}</td>
-                  <td>{article.designation}</td>
+                  <td>{article.article}</td>
+                  <td>{article.quantite}</td>
                   <td>
-                    {article.stock} {article.stock < 10 && <span style={{color: 'red'}}>⚠️</span>}
+                    {article.client} {article.stock < 10 && <span style={{color: 'red'}}>⚠️</span>}
                   </td>
-                  <td>{article.conditionnement}</td>
-                  <td>{article.prix} €</td>
+                  <td>{article.fournisseur}</td>
+                  <td>{article.date_commande}</td>
                 </tr>
               ))}
             </tbody>
@@ -188,4 +188,4 @@ const StockActuel = () => {
   );
 };
 
-export default StockActuel;
+export default Commande;

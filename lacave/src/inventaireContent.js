@@ -1,4 +1,9 @@
 const InventaireContent = () => {
+    fetch("http://localhost:8888/articles/readArticle")
+    .then(response => response.json())
+    .then(data =>{
+        console.log(data)
+    })
     return(
         <div>
             <h1> 🧮 Gestion de l'inventaire 🍷</h1>
