@@ -24,5 +24,17 @@ class ArticleController {
         return $response;
     }
 
+    public static function createArticle(Request $request, Response $response, $args)
+    {
+        ArticleModels::createArticle($request, $response, $args);
+        return $response;
+    }
+
+    public static function updateArticle(Request $request, Response $response, $args)
+    {
+        ArticleModels::updateArticle($request, $response, $args);
+        return $response;
+    }
+
 }
 

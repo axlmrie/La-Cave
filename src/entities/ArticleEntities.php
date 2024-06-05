@@ -2,8 +2,8 @@
 
 namespace src\entities;
 
-class ArticleEntities {
-
+class ArticleEntities
+{
     public $id_article;
     public $designation;
     public $famille;
@@ -11,14 +11,15 @@ class ArticleEntities {
     public $stock;
     public $conditionnement;
     public $reference;
-    public function __construct(){
-        $this->id_article = "";
-        $this->designation = "";
-        $this->famille = "";
-        $this->prix = "";
-        $this->stock = "";
-        $this->conditionnement = "";
-        $this->reference = "";
+
+    public function __construct($datas =[]){
+        $this->id_article = $datas['id_article'] ?? null;
+        $this->designation = $datas['designation'] ?? '';
+        $this->famille = $datas['famille'] ?? '';
+        $this->prix = $datas['prix'] ?? 0;
+        $this->stock = $datas['stock'] ?? 0;
+        $this->conditionnement = $datas['conditionnement'] ?? '';
+        $this->reference = $datas['reference'] ?? '';
     }
 
 
@@ -104,6 +105,85 @@ class ArticleEntities {
     {
         $this->conditionnement = $conditionnement;
     }
+
+    public static function readArticle($database)
+    {
+        $req = $database->prepare('SELECT * FROM articles WHERE stock > 1');
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function articleFamille($database)
+    {
+        $req = $database->prepare('Select * from articles INNER JOIN famille ON articles.famille = famille.id_famille');
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public static function stockArticleNeg($database)
+    {
+        $req = $database->prepare('SELECT * FROM articles WHERE stock < 1');
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function updateStock($database)
+    {
+        $req = $database->prepare('
+        UPDATE articles 
+        SET stock = :stock 
+        WHERE id_article :id_article');
+
+        $req->bindParam(":stock", $this->stock);
+        $req->bindParam(":id_article", $this->id_article);
+        $req->execute();
+        return $req;
+    }
+
+    public function createArticle($database)
+    {
+        $req = $database->prepare("
+        INSERT INTO articles (designation, famille, prix, stock, conditionnement, reference) VALUES (:designation, :famille, :prix, :stock, :conditionnement, :reference)");
+
+        $req->bindParam(":designation", $this->designation);
+        $req->bindParam(":famille", $this->famille);
+        $req->bindParam(":prix", $this->prix);
+        $req->bindParam(":stock", $this->stock);
+        $req->bindParam(":conditionnement", $this->conditionnement);
+        $req->bindParam(":reference", $this->reference);
+
+        $req->execute();
+
+        return $req;
+    }
+
+    public function updateArticle($database)
+    {
+        $req = $database->prepare('
+        UPDATE articles 
+        SET designation = :designation,
+            famille = :famille,
+            prix = :prix,
+            stock = :stock,
+            conditionnement = :conditionnement,
+            reference = :reference
+        WHERE id_article = :id_article');
+
+        $req->bindParam(":designation", $this->designation);
+        $req->bindParam(":famille", $this->famille);
+        $req->bindParam(":prix", $this->prix);
+        $req->bindParam(":stock", $this->stock);
+        $req->bindParam(":conditionnement", $this->conditionnement);
+        $req->bindParam(":reference", $this->reference);
+        $req->bindParam(":id_article", $this->id_article);
+
+        $req->execute();
+        return $req;
+    }
+
+
+
+
 
 
 }

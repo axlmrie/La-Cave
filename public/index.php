@@ -45,6 +45,5 @@ Settings::loadSettings();
 try {
     $app->run();
 } catch (Exception $e) {
-    // Affichage d'un message d'erreur
     die(json_encode(array("status" => "failed", "message" => "This action is not allowed")));
 }

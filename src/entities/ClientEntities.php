@@ -16,6 +16,7 @@ class ClientEntities {
     public $date_suppression;
 
     public function __construct($data = []) {
+        $this->id_client = $data['id_client'] ?? null;
         $this->prenom = $data['prenom'] ?? '';
         $this->nom = $data['nom'] ?? '';
         $this->mot_de_passe = $data['password'] ?? '';
@@ -124,8 +125,6 @@ class ClientEntities {
 
     public function register($database)
     {
-
-
         $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel) 
                 VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel)");
 
@@ -140,7 +139,13 @@ class ClientEntities {
         $req->execute();
 
         return $req->rowCount() == 1;
+    }
 
+    public static function readClient($database)
+    {
+        $req = $database->prepare('SELECT * FROM clients');
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
 
 

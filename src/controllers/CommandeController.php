@@ -14,7 +14,7 @@ class CommandeController {
     }
     public static function createCommandes(Request $request, Response $response, $args)
     {
-        CommandeModels::createCommandes($request, $response, $args);
+        CommandeModels::createCommande($request, $response, $args);
         return $response;
     }
     public static function affichageCommandes(Request $request, Response $response, $args)
@@ -22,6 +22,14 @@ class CommandeController {
         CommandeModels::affichageCommandes($request, $response, $args);
         return $response;
     }
+
+    public static function deleteCommandes(Request $request, Response $response, $args)
+    {
+        CommandeModels::deleteCommande($request, $response, $args);
+        return $response;
+    }
+
+
 
 }
 

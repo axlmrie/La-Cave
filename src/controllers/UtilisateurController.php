@@ -19,5 +19,10 @@ class UtilisateurController {
         return $response;
     }
 
+    public static function updateUtilisateur(Request $request, Response $response, $args)
+    {
+        UtilisateurModels::updateUtilisateur($request, $response, $args);
+        return $response;
+    }
 
 }
