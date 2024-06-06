@@ -14,6 +14,7 @@ class ClientEntities {
     public $adresse_facturation;
     public $adresse_livraison;
     public $date_suppression;
+    public $mail;
 
     public function __construct($data = []) {
         $this->id_client = $data['id_client'] ?? null;
@@ -24,6 +25,7 @@ class ClientEntities {
         $this->adresse_livraison = $data['adresse_livraison'] ?? '';
         $this->adresse_facturation = $data['adresse_facturation'] ?? '';
         $this->numero_telephone = $data['numero_tel'] ?? '';
+        $this->mail = $data['mail'] ?? '';
     }
 
 
@@ -62,6 +64,16 @@ class ClientEntities {
         $this->prenom = $prenom;
     }
 
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+
+    public function setMail($mail): void
+    {
+        $this->mail = $mail;
+    }
 
     public function getMotDePasse()
     {
@@ -125,8 +137,8 @@ class ClientEntities {
 
     public function register($database)
     {
-        $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel) 
-                VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel)");
+        $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel, mail) 
+                VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel, :mail)");
 
         $req->bindParam(":prenom", $this->prenom);
         $req->bindParam(":nom", $this->nom);
@@ -135,6 +147,7 @@ class ClientEntities {
         $req->bindParam(":adresse_livraison", $this->adresse_livraison);
         $req->bindParam(":adresse_facturation", $this->adresse_facturation);
         $req->bindParam(":numero_tel", $this->numero_telephone);
+        $req->bindParam(":mail", $this->mail);
 
         $req->execute();
 
