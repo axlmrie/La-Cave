@@ -10,16 +10,25 @@ use src\entities\ClientEntities;
 class LogModels {
 
 
-     public static function login($data)
+    public static function login($data)
     {
         $database = DatabaseHandler::connexion();
         $login = new ClientEntities($data);
-        $success = $login->login($database);
-        return [
-            'status' => $success ? 'success' : 'error',
-            'message' => $success ? 'Client connecté avec succès' : 'Erreur lors de la mise à jour de la famille'
-        ];
+        $user = $login->login($database);
+
+        if ($user) {
+            return [
+                "id_client" => $user['id_client'],
+                "name" => $user['name'],
+                "email" => $user['email'],
+            ];
+        } else {
+            return [
+                "error" => "Invalid login credentials"
+            ];
+        }
     }
+
 
     public static function logout()
     {

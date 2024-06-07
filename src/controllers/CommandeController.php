@@ -39,4 +39,8 @@ class CommandeController {
         $results = CommandeModels::deleteCommande($data, $id);
         return ResponseHandler::Response($request, $response, (array)$results);
     }
+    public static function readCommandesByClientId(Request $request, Response $response, $args)
+    {
+        return CommandeModels::readCommandesByClientId($request, $response, $args);
+    }
 }

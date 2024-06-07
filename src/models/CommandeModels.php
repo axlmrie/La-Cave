@@ -47,4 +47,28 @@ class CommandeModels {
         $database = DatabaseHandler::connexion();
         return CommandeEntities::affichageCommandes($database);
     }
+    public static function readCommandesByClientId(Request $request, Response $response, $args)
+    {
+        $clientId = $args['id_client'];
+
+        try {
+            $database = DatabaseHandler::connexion();
+            $req = $database->prepare("SELECT * FROM commandes WHERE client = :client_id");
+            $req->bindParam(':client_id', $clientId, \PDO::PARAM_INT);
+            $req->execute();
+
+            if ($req->rowCount() > 0) {
+                $commandes = $req->fetchAll(\PDO::FETCH_ASSOC);
+                $response->getBody()->write(json_encode(["commandes" => $commandes]));
+            } else {
+                $response = $response->withStatus(404);
+                $response->getBody()->write(json_encode(["message" => "Aucune commandes trouvées pour ce client"]));
+            }
+        } catch (\Exception $e) {
+            $response = $response->withStatus(500);
+            $response->getBody()->write(json_encode(["message" => "Erreur lors de la récupération des commandes: " . $e->getMessage()]));
+        }
+        $database = null;
+        return $response;
+    }
 }

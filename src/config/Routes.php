@@ -68,6 +68,8 @@ class Routes{
             $group->post('/createCommandes', CommandeController::class . ':createCommandes');
             $group->put('/deleteCommande/{id}', CommandeController::class . ':deleteCommandes');
             $group->post('/updateCommande/{id}', CommandeController::class . ':updateCommandes');
+            $group->get('/client/{id_client}', [CommandeController::class, 'readCommandesByClientId']);
+
         })->add(new ResponseMiddleware());
     }
 
