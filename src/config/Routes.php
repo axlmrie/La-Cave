@@ -31,7 +31,7 @@ class Routes{
         $app->group('/log', function (RouteCollectorProxy $group) {
             $group->post('/login', LogController::class . ':login');
             $group->post('/logout', LogController::class . ':logout');
-        });
+        })->add(new ResponseMiddleware());
     }
 
 

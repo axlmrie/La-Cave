@@ -5,6 +5,7 @@ namespace src\models;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use src\handlers\DatabaseHandler;
+use src\entities\ClientEntities;
 
 class LogModels {
 
@@ -50,36 +51,17 @@ class LogModels {
      *     )
      * )
      */
-    public static function login($data)
+     public static function login($data)
     {
-        $mail = $data['mail'] ?? null;
-        $password = $data['password'] ?? null;
-
-        if (!$mail || !$password) {
-            return [
-                'status' => 'error',
-                'message' => 'Mail et mot de passe sont requis.'
-            ];
-        }
-
         $database = DatabaseHandler::connexion();
-        $req = $database->prepare("SELECT * FROM clients WHERE mail = :mail AND password = :password");
-        $req->bindParam(':mail', $mail);
-        $req->bindParam(':password', $password);
-        $req->execute();
-
-        if ($req->rowCount() == 1) {
-            return [
-                'status' => 'success',
-                'message' => "Authentification réussie ! Bienvenue, $mail"
-            ];
-        } else {
-            return [
-                'status' => 'error',
-                'message' => "Échec de l'authentification. Veuillez vérifier vos informations d'identification."
-            ];
-        }
+        $login = new ClientEntities($data);
+        $success = $login->login($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Client connecté avec succès' : 'Erreur lors de la mise à jour de la famille'
+        ];
     }
+       
 
     /**
      * @OA\Post(

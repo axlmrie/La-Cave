@@ -30,7 +30,7 @@ class LogController {
     {
         $data = $request->getParsedBody();
         $results = LogModels::login($data);
-        return ResponseHandler::Response($request, $response, (array)$results);
+        return ResponseHandler::Response($request, $response,$results);
     }
 
     /**

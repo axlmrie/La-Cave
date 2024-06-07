@@ -115,6 +115,16 @@ class ClientEntities {
         $this->date_suppression = $date_suppression;
     }
 
+    public function login($database)
+    {
+
+        $req = $database->prepare("SELECT * FROM clients WHERE mail = :mail AND password = :password");
+        $req->bindParam(':mail', $this->mail);
+        $req->bindParam(':password', $this->mot_de_passe);
+        $req->execute();
+        return $req->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function register($database) {
         $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel, mail) 
                 VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel, :mail)");
