@@ -9,21 +9,7 @@ use src\models\ClientModels;
 
 class ClientController {
 
-    /**
-     * @OA\Get(
-     *     path="/clients/readClient",
-     *     tags={"Clients"},
-     *     summary="Obtenir tous les clients",
-     *     @OA\Response(
-     *         response=200,
-     *         description="Liste des clients",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/Client")
-     *         )
-     *     )
-     * )
-     */
+
     public static function readClient(Request $request, Response $response, $args)
     {
         $results = ClientModels::readClient($request, $response, $args);

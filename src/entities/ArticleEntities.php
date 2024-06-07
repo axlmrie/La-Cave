@@ -2,22 +2,6 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Article",
- *     type="object",
- *     title="Article",
- *     properties={
- *         @OA\Property(property="id_article", type="integer", description="ID de l'article"),
- *         @OA\Property(property="designation", type="string", description="Désignation de l'article"),
- *         @OA\Property(property="famille", type="integer", description="Famille de l'article"),
- *         @OA\Property(property="prix", type="number", format="float", description="Prix de l'article"),
- *         @OA\Property(property="stock", type="integer", description="Stock de l'article"),
- *         @OA\Property(property="conditionnement", type="string", description="Conditionnement de l'article"),
- *         @OA\Property(property="reference", type="string", description="Référence de l'article")
- *     }
- * )
- */
 class ArticleEntities
 {
     public $id_article;

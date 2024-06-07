@@ -2,22 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Commande",
- *     type="object",
- *     title="Commande",
- *     properties={
- *         @OA\Property(property="id_commande", type="integer", description="ID de la commande"),
- *         @OA\Property(property="article", type="integer", description="ID de l'article"),
- *         @OA\Property(property="quantite", type="integer", description="Quantité de l'article"),
- *         @OA\Property(property="fournisseur", type="integer", description="ID du fournisseur"),
- *         @OA\Property(property="date_commande", type="string", format="date-time", description="Date de la commande"),
- *         @OA\Property(property="date_suppression", type="string", format="date-time", description="Date de suppression de la commande"),
- *         @OA\Property(property="client", type="integer", description="ID du client")
- *     }
- * )
- */
+
 class CommandeEntities {
     public $id_commande;
     public $article;

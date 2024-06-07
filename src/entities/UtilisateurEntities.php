@@ -2,20 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Utilisateur",
- *     type="object",
- *     title="Utilisateur",
- *     properties={
- *         @OA\Property(property="id_utilisateur", type="integer", description="ID de l'utilisateur"),
- *         @OA\Property(property="prenom", type="string", description="Prénom de l'utilisateur"),
- *         @OA\Property(property="nom", type="string", description="Nom de l'utilisateur"),
- *         @OA\Property(property="matricule", type="string", description="Matricule de l'utilisateur"),
- *         @OA\Property(property="date_suppression", type="string", format="date-time", description="Date de suppression de l'utilisateur")
- *     }
- * )
- */
+
 class UtilisateurEntities {
 
     public $id_utilisateur;

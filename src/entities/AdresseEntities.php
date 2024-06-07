@@ -2,22 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Adresse",
- *     type="object",
- *     title="Adresse",
- *     properties={
- *         @OA\Property(property="id_adresse", type="integer", description="ID de l'adresse"),
- *         @OA\Property(property="nom_rue", type="string", description="Nom de la rue"),
- *         @OA\Property(property="numero_rue", type="string", description="Numéro de la rue"),
- *         @OA\Property(property="ville", type="string", description="Ville"),
- *         @OA\Property(property="code_postal", type="string", description="Code postal"),
- *         @OA\Property(property="pays", type="string", description="Pays"),
- *         @OA\Property(property="facturation", type="boolean", description="Facturation")
- *     }
- * )
- */
+
 class AdresseEntities {
     private $id_adresse;
     private $nom_rue;

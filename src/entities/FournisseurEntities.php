@@ -2,20 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Fournisseur",
- *     type="object",
- *     title="Fournisseur",
- *     properties={
- *         @OA\Property(property="id_fournisseur", type="integer", description="ID du fournisseur"),
- *         @OA\Property(property="nom", type="string", description="Nom du fournisseur"),
- *         @OA\Property(property="adresse", type="integer", description="Adresse du fournisseur"),
- *         @OA\Property(property="date_suppression", type="string", format="date-time", description="Date de suppression du fournisseur"),
- *         @OA\Property(property="numero_telephone", type="string", description="Numéro de téléphone du fournisseur")
- *     }
- * )
- */
+
 class FournisseurEntities {
     public $id_fournisseur;
     public $nom;

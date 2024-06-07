@@ -3,9 +3,7 @@
         'name' => '__root__',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-
-        'reference' => '883d4bf27795b293644e03fb628e700dbe50380b',
-
+        'reference' => '74c3b49a2ce170bf45f9b29f7e7d4f1ba111fb70',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -15,9 +13,7 @@
         '__root__' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-
-            'reference' => '883d4bf27795b293644e03fb628e700dbe50380b',
-
+            'reference' => '74c3b49a2ce170bf45f9b29f7e7d4f1ba111fb70',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -222,24 +218,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'symfony/deprecation-contracts' => array(
-            'pretty_version' => 'v3.5.0',
-            'version' => '3.5.0.0',
-            'reference' => '0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'symfony/finder' => array(
-            'pretty_version' => 'v7.0.7',
-            'version' => '7.0.7.0',
-            'reference' => '4d58f0f4fe95a30d7b538d71197135483560b97c',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/finder',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'symfony/polyfill-ctype' => array(
             'pretty_version' => 'v1.29.0',
             'version' => '1.29.0.0',
@@ -264,15 +242,6 @@
             'reference' => '87b68208d5c1188808dd7839ee1e6c8ec3b02f1b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'symfony/yaml' => array(
-            'pretty_version' => 'v7.0.7',
-            'version' => '7.0.7.0',
-            'reference' => '0d3916ae69ea28b59d94b60c4f2b50f4e25adb5c',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/yaml',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -309,15 +278,6 @@
             'reference' => '2cf9fb6054c2bb1d59d1f3817706ecdb9d2934c4',
             'type' => 'library',
             'install_path' => __DIR__ . '/../vlucas/phpdotenv',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'zircote/swagger-php' => array(
-            'pretty_version' => '4.9.2',
-            'version' => '4.9.2.0',
-            'reference' => '256d42cb07ba1c2206d66bc7516ee3d3e3e9f0b2',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../zircote/swagger-php',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

@@ -2,19 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Famille",
- *     type="object",
- *     title="Famille",
- *     properties={
- *         @OA\Property(property="id_famille", type="integer", description="ID de la famille"),
- *         @OA\Property(property="cepage", type="string", description="Cépage de la famille"),
- *         @OA\Property(property="annee", type="integer", description="Année de la famille"),
- *         @OA\Property(property="vignoble", type="string", description="Vignoble de la famille")
- *     }
- * )
- */
+
 class FamilleEntities {
 
     public $id_famille;

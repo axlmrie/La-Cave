@@ -2,24 +2,7 @@
 
 namespace src\entities;
 
-/**
- * @OA\Schema(
- *     schema="Client",
- *     type="object",
- *     title="Client",
- *     properties={
- *         @OA\Property(property="id_client", type="integer", description="ID du client"),
- *         @OA\Property(property="prenom", type="string", description="Prénom du client"),
- *         @OA\Property(property="nom", type="string", description="Nom du client"),
- *         @OA\Property(property="password", type="string", description="Mot de passe du client"),
- *         @OA\Property(property="date_suppression", type="string", format="date-time", description="Date de suppression du client"),
- *         @OA\Property(property="adresse_livraison", type="integer", description="Adresse de livraison du client"),
- *         @OA\Property(property="adresse_facturation", type="integer", description="Adresse de facturation du client"),
- *         @OA\Property(property="numero_tel", type="string", description="Numéro de téléphone du client"),
- *         @OA\Property(property="mail", type="string", description="Email du client")
- *     }
- * )
- */
+
 class ClientEntities {
     public $id_client;
     public $nom;

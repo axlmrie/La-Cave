@@ -22,7 +22,6 @@ class Routes{
     {
         $app->group('', function (RouteCollectorProxy $group) {
             $group->get('/', RoutesController::class . ':world');
-            $group->get('/testLogin', RoutesController::class . ':testLogin');
         });
     }
 
@@ -40,7 +39,7 @@ class Routes{
     {
         $app->group('/stock', function (RouteCollectorProxy $group) {
             $group->post('/updateStock', StockController::class . ':updateStock');
-        });
+        })->add(new ResponseMiddleware());
     }
 
     public static function fournisseursRoutes($app): void
@@ -109,17 +108,6 @@ class Routes{
 
         })->add(new ResponseMiddleware());
     }
-
-    public static function docsRoutes($app): void
-    {
-        $app->get('/docs', function ($request, $response, $args) {
-            require __DIR__ . '/../swagger/swagger.php';
-            return $response;
-        });
-    }
-
-
-
 }
 
 
