@@ -29,7 +29,7 @@ class Routes{
     public static function logRoutes($app): void
     {
         $app->group('/log', function (RouteCollectorProxy $group) {
-            $group->get('/login', LogController::class . ':login');
+            $group->post('/login', LogController::class . ':login');
             $group->post('/logout', LogController::class . ':logout');
         });
     }
