@@ -110,6 +110,14 @@ class Routes{
         })->add(new ResponseMiddleware());
     }
 
+    public static function docsRoutes($app): void
+    {
+        $app->get('/docs', function ($request, $response, $args) {
+            require __DIR__ . '/../swagger/swagger.php';
+            return $response;
+        });
+    }
+
 
 
 }

@@ -40,6 +40,7 @@ Routes::adressesRoutes($app);
 Routes::utilisateursRoutes($app);
 Routes::familleRoutes($app);
 Routes::stockRoutes($app);
+Routes::docsRoutes($app);
 Settings::loadSettings();
 
 try {

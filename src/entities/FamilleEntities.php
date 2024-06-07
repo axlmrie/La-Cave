@@ -2,6 +2,19 @@
 
 namespace src\entities;
 
+/**
+ * @OA\Schema(
+ *     schema="Famille",
+ *     type="object",
+ *     title="Famille",
+ *     properties={
+ *         @OA\Property(property="id_famille", type="integer", description="ID de la famille"),
+ *         @OA\Property(property="cepage", type="string", description="Cépage de la famille"),
+ *         @OA\Property(property="annee", type="integer", description="Année de la famille"),
+ *         @OA\Property(property="vignoble", type="string", description="Vignoble de la famille")
+ *     }
+ * )
+ */
 class FamilleEntities {
 
     public $id_famille;
@@ -14,51 +27,42 @@ class FamilleEntities {
         $this->cepage = $data['cepage'] ?? '';
         $this->annee = $data['annee'] ?? '';
         $this->vignoble = $data['vignoble'] ?? '';
-
     }
-
 
     public function getIdFamille()
     {
         return $this->id_famille;
     }
 
-
     public function setIdFamille($id_famille): void
     {
         $this->id_famille = $id_famille;
     }
-
 
     public function getCepage()
     {
         return $this->cepage;
     }
 
-
     public function setCepage($cepage): void
     {
         $this->cepage = $cepage;
     }
-
 
     public function getAnnee()
     {
         return $this->annee;
     }
 
-
     public function setAnnee($annee): void
     {
         $this->annee = $annee;
     }
 
-
     public function getVignoble()
     {
         return $this->vignoble;
     }
-
 
     public function setVignoble($vignoble): void
     {
@@ -86,13 +90,12 @@ class FamilleEntities {
             annee = :annee,
             vignoble = :vignoble
         WHERE id_famille = :id_famille
-    ");
+        ");
 
         $req->bindParam(":cepage", $this->cepage);
         $req->bindParam(":annee", $this->annee);
         $req->bindParam(":vignoble", $this->vignoble);
         $req->bindParam(":id_famille", $this->id_famille);
-
 
         $req->execute();
 
@@ -104,8 +107,5 @@ class FamilleEntities {
         $req = $database->prepare("SELECT * FROM famille");
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
-
     }
-
-
 }

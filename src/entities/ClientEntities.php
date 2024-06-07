@@ -2,9 +2,24 @@
 
 namespace src\entities;
 
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-
+/**
+ * @OA\Schema(
+ *     schema="Client",
+ *     type="object",
+ *     title="Client",
+ *     properties={
+ *         @OA\Property(property="id_client", type="integer", description="ID du client"),
+ *         @OA\Property(property="prenom", type="string", description="Prénom du client"),
+ *         @OA\Property(property="nom", type="string", description="Nom du client"),
+ *         @OA\Property(property="password", type="string", description="Mot de passe du client"),
+ *         @OA\Property(property="date_suppression", type="string", format="date-time", description="Date de suppression du client"),
+ *         @OA\Property(property="adresse_livraison", type="integer", description="Adresse de livraison du client"),
+ *         @OA\Property(property="adresse_facturation", type="integer", description="Adresse de facturation du client"),
+ *         @OA\Property(property="numero_tel", type="string", description="Numéro de téléphone du client"),
+ *         @OA\Property(property="mail", type="string", description="Email du client")
+ *     }
+ * )
+ */
 class ClientEntities {
     public $id_client;
     public $nom;
@@ -28,115 +43,79 @@ class ClientEntities {
         $this->mail = $data['mail'] ?? '';
     }
 
-
-    public function getIdClient()
-    {
+    public function getIdClient() {
         return $this->id_client;
     }
 
-
-    public function setIdClient($id_client): void
-    {
+    public function setIdClient($id_client): void {
         $this->id_client = $id_client;
     }
 
-
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
-
-    public function setNom($nom): void
-    {
+    public function setNom($nom): void {
         $this->nom = $nom;
     }
 
-
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
-
-    public function setPrenom($prenom): void
-    {
+    public function setPrenom($prenom): void {
         $this->prenom = $prenom;
     }
 
-    public function getMail()
-    {
+    public function getMail() {
         return $this->mail;
     }
 
-
-    public function setMail($mail): void
-    {
+    public function setMail($mail): void {
         $this->mail = $mail;
     }
 
-    public function getMotDePasse()
-    {
+    public function getMotDePasse() {
         return $this->mot_de_passe;
     }
 
-
-    public function setMotDePasse($mot_de_passe): void
-    {
+    public function setMotDePasse($mot_de_passe): void {
         $this->mot_de_passe = $mot_de_passe;
     }
 
-
-    public function getNumeroTelephone()
-    {
+    public function getNumeroTelephone() {
         return $this->numero_telephone;
     }
 
-
-    public function setNumeroTelephone($numero_telephone): void
-    {
+    public function setNumeroTelephone($numero_telephone): void {
         $this->numero_telephone = $numero_telephone;
     }
 
-
-    public function getAdresseFacturation()
-    {
+    public function getAdresseFacturation() {
         return $this->adresse_facturation;
     }
 
-
-    public function setAdresseFacturation($adresse_facturation): void
-    {
+    public function setAdresseFacturation($adresse_facturation): void {
         $this->adresse_facturation = $adresse_facturation;
     }
 
-
-    public function getAdresseLivraison()
-    {
+    public function getAdresseLivraison() {
         return $this->adresse_livraison;
     }
 
-
-    public function setAdresseLivraison($adresse_livraison): void
-    {
+    public function setAdresseLivraison($adresse_livraison): void {
         $this->adresse_livraison = $adresse_livraison;
     }
 
-
-    public function getDateSuppression()
-    {
+    public function getDateSuppression() {
         return $this->date_suppression;
     }
 
-
-    public function setDateSuppression($date_suppression): void
-    {
+    public function setDateSuppression($date_suppression): void {
         $this->date_suppression = $date_suppression;
     }
 
-
-    public function register($database)
-    {
+    public function register($database) {
         $req = $database->prepare("INSERT INTO clients (prenom, nom, password, date_suppression, adresse_livraison, adresse_facturation, numero_tel, mail) 
                 VALUES (:prenom, :nom, :password, :date_suppression, :adresse_livraison, :adresse_facturation, :numero_tel, :mail)");
 
@@ -154,14 +133,9 @@ class ClientEntities {
         return $req->rowCount() == 1;
     }
 
-    public static function readClient($database)
-    {
+    public static function readClient($database) {
         $req = $database->prepare('SELECT * FROM clients');
         $req->execute();
         return $req->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-
-
-
 }

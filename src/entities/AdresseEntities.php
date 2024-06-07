@@ -2,7 +2,22 @@
 
 namespace src\entities;
 
-
+/**
+ * @OA\Schema(
+ *     schema="Adresse",
+ *     type="object",
+ *     title="Adresse",
+ *     properties={
+ *         @OA\Property(property="id_adresse", type="integer", description="ID de l'adresse"),
+ *         @OA\Property(property="nom_rue", type="string", description="Nom de la rue"),
+ *         @OA\Property(property="numero_rue", type="string", description="Numéro de la rue"),
+ *         @OA\Property(property="ville", type="string", description="Ville"),
+ *         @OA\Property(property="code_postal", type="string", description="Code postal"),
+ *         @OA\Property(property="pays", type="string", description="Pays"),
+ *         @OA\Property(property="facturation", type="boolean", description="Facturation")
+ *     }
+ * )
+ */
 class AdresseEntities {
     private $id_adresse;
     private $nom_rue;
@@ -82,8 +97,7 @@ class AdresseEntities {
     }
 
     // Méthode pour mettre à jour l'adresse dans la base de données
-    public function updateAdresse ($database)
-    {
+    public function updateAdresse($database) {
         $req = $database->prepare("
             UPDATE adresse 
             SET nom_rue = :nom_rue,
@@ -110,10 +124,10 @@ class AdresseEntities {
 
     public function createAdresse($database) {
         $req = $database->prepare("
-        INSERT INTO adresse 
-        (nom_rue, ville, numero_rue, code_postal, pays, facturation)
-        VALUES (:nom_rue, :ville, :numero_rue, :code_postal, :pays, :facturation)
-    ");
+            INSERT INTO adresse 
+            (nom_rue, ville, numero_rue, code_postal, pays, facturation)
+            VALUES (:nom_rue, :ville, :numero_rue, :code_postal, :pays, :facturation)
+        ");
 
         $req->bindParam(':nom_rue', $this->nom_rue);
         $req->bindParam(':ville', $this->ville);
@@ -126,7 +140,4 @@ class AdresseEntities {
 
         return $req->rowCount() == 1;
     }
-
-
-
 }

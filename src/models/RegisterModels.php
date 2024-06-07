@@ -7,32 +7,54 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use src\handlers\DatabaseHandler;
 use src\entities\ClientEntities;
 
-
-
 class RegisterModels {
-    public static function register(Request $request, Response $response, $args)
+
+    /**
+     * @OA\Post(
+     *     path="/clients/register",
+     *     tags={"Clients"},
+     *     summary="Créer un nouveau compte client",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="prenom", type="string"),
+     *             @OA\Property(property="nom", type="string"),
+     *             @OA\Property(property="password", type="string"),
+     *             @OA\Property(property="adresse_livraison", type="integer"),
+     *             @OA\Property(property="adresse_facturation", type="integer"),
+     *             @OA\Property(property="numero_tel", type="string"),
+     *             @OA\Property(property="mail", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Compte client créé",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Erreur lors de la création du compte client",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     )
+     * )
+     */
+    public static function register($data)
     {
-        $data = $request->getParsedBody();
-
-        try {
-            $database = DatabaseHandler::connexion();
-            $client = new ClientEntities($data);
-
-
-            if ($client->register($database)) {
-                $response->getBody()->write(json_encode(["message" => "Utilisateur enregistré avec succès"]));
-            } else {
-                $response = $response->withStatus(500);
-                $response->getBody()->write(json_encode(["message" => "Aucun enregistrement effectué"]));
-            }
-        } catch (\Exception $e) {
-            $response = $response->withStatus(500);
-            $response->getBody()->write(json_encode(["message" => "Erreur lors de l'inscription de l'utilisateur: " . $e->getMessage()]));
-        }
-        $database = null;
-
-        return $response;
-
-
+        $database = DatabaseHandler::connexion();
+        $client = new ClientEntities($data);
+        $success = $client->register($database);
+        return [
+            'status' => $success ? 'success' : 'error',
+            'message' => $success ? 'Compte client créé avec succès' : 'Erreur lors de la création de l\'utilisateur'
+        ];
     }
 }
