@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import '../Styles/Cart.css';
+
 
 const promoCodes = {
     'Alcool10': 10,
     'di23': 23
 };
 
-function Cart({ cart, updateCart }) {
-    const [isOpen, setIsOpen] = useState(true);
+function Cart({ cart, updateCart ,setItemCount,setCartOpen}) {
     const [promoCode, setPromoCode] = useState('');
     const [discount, setDiscount] = useState(0);
     const [total, setTotal] = useState(0);
@@ -15,7 +15,6 @@ function Cart({ cart, updateCart }) {
     useEffect(() => {
         const newTotal = cart.reduce((acc, plantType) => acc + plantType.amount * plantType.price, 0);
         setTotal(newTotal);
-        document.title = `La cave 🍷 : ${newTotal - (newTotal * discount / 100)}€ d'achats 💸`;
     }, [cart, discount]);
 
     const applyPromoCode = () => {
@@ -32,14 +31,14 @@ function Cart({ cart, updateCart }) {
 
     const totalAfterDiscount = total - (total * discount / 100);
 
-    return isOpen ? (
-        <div className='lmj-cart'>
-            <button
-                className='lmj-cart-toggle-button'
-                onClick={() => setIsOpen(false)}
-            >
-                Fermer
-            </button>
+    setItemCount(cart.length);
+
+    const panier = ()=>{
+        setCartOpen(true)
+    }
+
+    return (
+        <div className='lmj-cart' id="cart">
             {cart.length > 0 ? (
                 <div>
                     <h2>Panier</h2>
@@ -62,6 +61,9 @@ function Cart({ cart, updateCart }) {
                         ))}
                     </ul>
                     <h3>Total : {totalAfterDiscount.toFixed(2)}€</h3>
+                    <br>
+                    </br>
+                    <button onClick={panier}>Passer commande</button>
                     <input
                         type="text"
                         placeholder="Code promo"
@@ -75,16 +77,7 @@ function Cart({ cart, updateCart }) {
                 <div>Votre panier est vide</div>
             )}
         </div>
-    ) : (
-        <div className='lmj-cart-closed'>
-            <button
-                className='lmj-cart-toggle-button'
-                onClick={() => setIsOpen(true)}
-            >
-                Ouvrir le Panier
-            </button>
-        </div>
-    );
+    )
 }
 
 export default Cart;

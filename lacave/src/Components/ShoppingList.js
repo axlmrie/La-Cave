@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { plantList, creaVinList } from '../Datas/plantList';
 import '../Styles/ShoppingList.css';
 import PlantItem from './PlantItem';
-import Categories from './Categories';
 
-function ShoppingList({ cart, updateCart }) {
-    const [activeCategory, setActiveCategory] = useState('');
+function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, activeConditionnement, setActiveConditionnement, activeFamille, setActiveFamille, activeAnnee, setActiveAnnee, priceRange, setPriceRange }) {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 25;
+    const itemsPerPage = 20;
+
+    console.log(localStorage)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -24,13 +24,12 @@ function ShoppingList({ cart, updateCart }) {
             }
         };
         fetchData();
-    }, []); // Ajout d'une dépendance vide pour n'exécuter qu'au montage
+    }, []);
 
-    const categories = plants.reduce(
-        (acc, plant) =>
-            acc.includes(plant.category) ? acc : acc.concat(plant.category),
-        []
-    );
+    useEffect(() => {
+        // Remettre currentPage à 1 lorsque l'un des filtres change
+        setCurrentPage(1);
+    }, [activeCategory, activeConditionnement, activeFamille, activeAnnee, priceRange]);
 
     function addToCart(name, price) {
         const currentPlantSaved = cart.find((plant) => plant.name === name);
@@ -47,10 +46,16 @@ function ShoppingList({ cart, updateCart }) {
         }
     }
 
-    // Filtrer les plantes en fonction de la catégorie active
-    const filteredPlants = activeCategory
-        ? plants.filter((plant) => plant.category === activeCategory)
-        : plants;
+    // Filtrer les plantes en fonction des filtres actifs
+    const filteredPlants = plants.filter((plant) => {
+        return (
+            (!activeCategory || plant.category === activeCategory) &&
+            (!activeConditionnement || plant.conditionnement === activeConditionnement) &&
+            (!activeFamille || plant.vignoble === activeFamille) &&
+            (!activeAnnee || plant.annee === activeAnnee) &&
+            plant.price >= priceRange[0] && plant.price <= priceRange[1]
+        );
+    });
 
     // Calculer la pagination
     const totalPages = Math.ceil(filteredPlants.length / itemsPerPage);
@@ -80,11 +85,32 @@ function ShoppingList({ cart, updateCart }) {
 
     return (
         <div className='lmj-shopping-list'>
-            <Categories
-                categories={categories}
-                setActiveCategory={setActiveCategory}
-                activeCategory={activeCategory}
-            />
+            <div className='filterOnDiv'>
+                {activeCategory && (
+                    <div className='filterOn'>
+                        {activeCategory}
+                        <div onClick={() => setActiveCategory('')}>×</div>
+                    </div>
+                )}
+                {activeAnnee && (
+                    <div className='filterOn'>
+                        {activeAnnee}
+                        <div onClick={() => setActiveAnnee('')}>×</div>
+                    </div>
+                )}
+                {activeConditionnement && (
+                    <div className='filterOn'>
+                        {activeConditionnement}
+                        <div onClick={() => setActiveConditionnement('')}>×</div>
+                    </div>
+                )}
+                {activeFamille && (
+                    <div className='filterOn'>
+                        {activeFamille}
+                        <div onClick={() => setActiveFamille('')}>×</div>
+                    </div>
+                )}
+            </div>
             <ul className='lmj-plant-list'>
                 {currentPlants.map(({ id, cover, name, stock, conditionnement, reference, category, price }) => (
                     <div key={id}>

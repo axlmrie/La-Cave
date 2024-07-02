@@ -4,7 +4,7 @@ import champagne from '../Assets/champagne.jpg';
 import vin_rouge from '../Assets/vinRouge.jpg';
 import vin_blanc from '../Assets/vinBlanc.jpg';
 import vin_pétillant from '../Assets/vinPetillant.jpg'; // Vérifiez que cette image existe
-import categories from '../Components/Categories';
+
 
 
 const imageMapping = {
@@ -23,7 +23,8 @@ export const creaVinList = () => {
     return fetch('http://localhost:8888/articles/articleFamille')
         .then(response => response.json())
         .then(data => {
-            data.forEach(element => {
+             
+            data.datas.forEach(element => {
                 const imageName = imageMapping[element.cepage];
                 if (!imageName) {
                     console.warn(`No image found for cépage: ${element.cepage}`);
@@ -37,6 +38,8 @@ export const creaVinList = () => {
                     reference: element.reference,
                     conditionnement: element.conditionnement,
                     cover:imageName,
+                    vignoble : element.vignoble,
+                    annee:element.annee,
                     // Vous pouvez ajuster cette ligne pour des images dynamiques si nécessaire
                 });
             });

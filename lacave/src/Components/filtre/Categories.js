@@ -1,4 +1,4 @@
-import '../Styles/Categories.css'
+import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/Categories.css'
 
 function categories({setActiveCategory, categories,activeCategory}){
     return (
@@ -8,12 +8,11 @@ function categories({setActiveCategory, categories,activeCategory}){
                 onChange={(e) => setActiveCategory(e.target.value)}
                 className="lmj-categories-select"
                 >
-                    <option value=''>...</option>
+                    <option value=''>Type</option>
                     {categories.map((cat)=>(
                         <option key={cat} value={cat}>{cat}</option>
                     ))}
                 </select>
-                <button onClick={()=> setActiveCategory('')}>Réintialiser</button>
         </div>
     )
 }

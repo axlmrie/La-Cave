@@ -9,7 +9,9 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Connexion from './Components/connexion';
+import Connexion from './Components/pageConnexion/connexion';
+
+
 
 const router = createBrowserRouter([
   {
@@ -28,7 +30,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    
     <RouterProvider router={router} />
+    
   </React.StrictMode>
 );
 

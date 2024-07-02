@@ -32,9 +32,7 @@
   align-items: flex-start;
 }
 
-h1 {
-  color: white;
-}
+
 
 label {
   color: white;
@@ -89,13 +87,13 @@ select{
   color: white;
 }
 
-button{
+/*button{
   min-width: 10vw;
   height: 5vh;
   background-color: #1f2229;
   border: none;
   color: white;
-}
+}*/
 
 td{
   padding-top: 2vh ;

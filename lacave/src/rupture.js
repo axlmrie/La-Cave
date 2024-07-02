@@ -15,8 +15,8 @@ const Rupture = () => {
     const ruptureTab = [];
     const response = await fetch('http://localhost:8888/articles/stockArticleNeg');
     const data = await response.json();
-    setLenRupture(data.length);
-    data.forEach((element) => {
+    setLenRupture(data.datas.length);
+    data.datas.forEach((element) => {
       ruptureTab.push(
         new Articles(
           element.reference,

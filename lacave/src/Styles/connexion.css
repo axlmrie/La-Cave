@@ -1,20 +1,72 @@
+body{
+    background: transparent;
+}
 .connexion label {
-    color:black;
+    color:white;
 }
 
 .connexion h1{
-    color:black;
+    color:white;
 }
 
 .inscription label {
-    color:black;
+    color:white;
 }
 
 .inscription h1{
-    color:black;
+    color:white;
 }
 
-.connexion div{
+.connexion input{
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+}
+.inscription input{
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.connexion{
+    margin: auto;
+    margin-top: 20vh;
+    background-color:#401201 ;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inscription{
+    margin: auto;
+    margin-top: 10vh;
+    background-color:#401201 ;
+    width: fit-content;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    color :black;
+    background-color: #F2C46D;
+    border: none;
+    border-radius: 20px;
+}
+
+
+.form{
     margin-left: auto;
     margin-right: auto;
     width: 400px;

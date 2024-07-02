@@ -6,7 +6,6 @@ function handleClick(plantName) {
 }
 
 function PlantItem({ cover, name, conditionnement, reference, price, addToCart }) {
-    console.log(cover) 
     return (
         <li className="lmj-plant-item">
             <span className="lmj-plant-item-price">{price}€</span>

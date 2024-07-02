@@ -1,11 +1,18 @@
 .lmj-cart{
+    z-index: 4;
     padding: 32px;
+    right: 0;
+    top:100px;
     color: white;
-    background-color: #8C1415;
+    background-color: #401201;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 200px;
+    position: fixed;
+    display: none;
+    border-left:solid 10px #320e00;
+    border-bottom: solid 10px #320e00;
 }
 
 .lmj-cart-add-button{
