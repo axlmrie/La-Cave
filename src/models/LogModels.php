@@ -19,8 +19,6 @@ class LogModels {
         if ($user) {
             return [
                 "id_client" => $user['id_client'],
-                "name" => $user['name'],
-                "email" => $user['email'],
             ];
         } else {
             return [
