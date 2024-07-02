@@ -63,15 +63,18 @@ function Cart({ cart, updateCart ,setItemCount,setCartOpen}) {
                     <h3>Total : {totalAfterDiscount.toFixed(2)}€</h3>
                     <br>
                     </br>
+                    <div id="divPanier">
                     <button onClick={panier}>Passer commande</button>
                     <input
                         type="text"
+                        id="btnPromo"
                         placeholder="Code promo"
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
                     />
                     <button onClick={applyPromoCode}>Appliquer le code promo</button>
-                    <button onClick={() => updateCart([])}>Vider le panier</button>
+                    <button id="btnVider" onClick={() => updateCart([])}>Vider le panier</button>
+                    </div>
                 </div>
             ) : (
                 <div>Votre panier est vide</div>

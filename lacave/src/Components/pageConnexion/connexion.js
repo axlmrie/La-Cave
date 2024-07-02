@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/connexion.css'
+import '/Users/code/Documents/La-Cave/lacave/src/Styles/connexion.css'
 import PhoneSelect from './PhoneSelect';
-import logo from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/logo.png'
-import bg from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/wineCave.webp'
+import logo from '/Users/code/Documents/La-Cave/lacave/src/Assets/logo.png'
+import bg from '/Users/code/Documents/La-Cave/lacave/src/Assets/wineCave.webp'
 
 function validatePassword(password) {
     const lengthRequirement = password.length >= 8;

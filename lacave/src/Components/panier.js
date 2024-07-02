@@ -60,6 +60,7 @@ const Panier = ({ cart, updateCart, promoCodes, setCartOpen }) => {
           <div className="promo">
             <input
               type="text"
+              
               placeholder="Code promo"
               value={promoCode}
               onChange={(e) => setPromoCode(e.target.value)}
@@ -67,7 +68,7 @@ const Panier = ({ cart, updateCart, promoCodes, setCartOpen }) => {
             <button onClick={applyPromoCode}>Appliquer le code promo</button>
           </div>
           <button onClick={pay}>Commander</button>
-     
+
           <button onClick={() => updateCart([])}>Vider le panier</button>
         </>
       ) : (

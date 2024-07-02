@@ -1,4 +1,4 @@
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/Categories.css'
+import '/Users/code/Documents/La-Cave/lacave/src/Styles/Categories.css'
 
 function categories({setActiveCategory, categories,activeCategory}){
     return (

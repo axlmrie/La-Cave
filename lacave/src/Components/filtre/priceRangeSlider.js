@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactSlider from 'react-slider';
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/priceSlider.css'; // Assurez-vous d'ajouter des styles appropriés
+import '/Users/code/Documents/La-Cave/lacave/src/Styles/priceSlider.css'; // Assurez-vous d'ajouter des styles appropriés
 
 const PriceRangeSlider = ({ minPrice, maxPrice, priceRange, setPriceRange }) => {
     return (
