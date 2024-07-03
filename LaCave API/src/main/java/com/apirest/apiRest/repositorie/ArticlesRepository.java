@@ -1,9 +1,9 @@
 package com.apirest.apiRest.repositorie;
 
-import com.apirest.apiRest.model.Adresse;
+import org.springframework.data.jpa.repository.Modifying;
 import com.apirest.apiRest.model.Articles;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.apirest.apiRest.model.Articles;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -16,4 +16,9 @@ public interface ArticlesRepository extends JpaRepository<Articles, Long> {
 
     @Query(value = "Select * from articles INNER JOIN famille ON articles.famille = famille.id_famille", nativeQuery = true)
     Iterable<Articles> findByIdFamille();
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Articles a SET a.stock = :stock WHERE a.idArticle = :id")
+    void modifyStock(int id, int stock);
 }

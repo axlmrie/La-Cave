@@ -1,6 +1,6 @@
 package com.apirest.apiRest.service;
 
-import com.apirest.apiRest.model.Adresse;
+import org.springframework.transaction.annotation.Transactional;
 import com.apirest.apiRest.model.Articles;
 import com.apirest.apiRest.model.Utilisateurs;
 import com.apirest.apiRest.repositorie.AdresseRepository;
@@ -36,6 +36,12 @@ public class ArticlesServiceImpl implements ArticlesService {
     @Override
     public Iterable<Articles> findByIdFamille() {
         return articlesRepository.findByIdFamille();
+    }
+
+    @Override
+    @Transactional
+    public void modifyStock(int id, int stock) {
+        articlesRepository.modifyStock(id, stock);
     }
 
     @Override

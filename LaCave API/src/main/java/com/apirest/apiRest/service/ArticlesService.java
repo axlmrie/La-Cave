@@ -16,6 +16,8 @@ public interface ArticlesService {
     Articles createArticles(Articles articles);
     Iterable<Articles> stockArticleNeg();
     Articles modifyArticles(int id, Articles articles);
+    void modifyStock(int id, int stock);
+
 
 
 
