@@ -18,6 +18,7 @@ public class Fournisseurs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idFournisseurs;
+
     private String numero_tel;
     private String nom;
     private Date date_suppression;

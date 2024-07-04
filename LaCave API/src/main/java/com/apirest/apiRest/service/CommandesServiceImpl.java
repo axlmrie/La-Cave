@@ -48,7 +48,6 @@ public class CommandesServiceImpl implements CommandesService {
                     p.setDate_commande(commandes.getDate_commande());
                     p.setClient(commandes.getClient());
                     p.setArticle(commandes.getArticle());
-                    p.setFournisseur(commandes.getFournisseur());
                     p.setQuantite(commandes.getQuantite());
                     p.setDate_suppression(commandes.getDate_suppression());
                     return commandesRepository.save(p);

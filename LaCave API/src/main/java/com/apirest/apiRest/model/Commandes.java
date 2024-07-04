@@ -27,9 +27,6 @@ public class Commandes {
     @ManyToOne
     @JoinColumn(name = "client", nullable = true)
     private Clients client;
-    @ManyToOne
-    @JoinColumn(name = "fournisseur", nullable = true)
-    private Fournisseurs fournisseur;
 
     private Timestamp date_commande;
     private Date date_suppression;
