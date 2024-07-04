@@ -1,0 +1,49 @@
+.lmj-cart{
+    z-index: 4;
+    padding: 32px;
+    right: 0;
+    top:100px;
+    color: white;
+    background-color: #401201;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+    position: fixed;
+    display: none;
+    border-left:solid 10px #320e00;
+    border-bottom: solid 10px #320e00;
+}
+
+.lmj-cart-add-button{
+    margin-left: 32px;
+    cursor: pointer;
+}
+.contenuCart{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenuCart div {
+    margin-bottom: 10px;
+}
+
+.lmj-cart-toggle-button {
+    background:none;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    align-self: self-start;
+    padding: 0;
+    color: white;
+}
+
+.lmj-cart-closed {
+    padding: 32px;
+    width: 200px;
+}
+
+.lmj-cart-closed > button {
+    color: black;
+}

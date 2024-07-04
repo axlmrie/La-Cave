@@ -1,0 +1,63 @@
+.lmj-banner {
+    z-index: 3;
+    background-color: #401201;
+    width: 100vw;
+    position: fixed;
+    color : white;
+    text-align: right;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.lmj-banner h1{
+    min-width: max-content;
+}
+
+.lmj-logo {
+    height: 125px;
+    width: 125px;
+}
+
+
+.account{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    background:transparent;
+}
+
+.account svg:hover{
+    cursor: pointer;
+}
+
+.rightBanner{
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 100px;
+}
+
+.badge{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #F2C46D;
+    font-weight: bolder;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
