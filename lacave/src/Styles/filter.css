@@ -1,0 +1,12 @@
+.filtre{
+    z-index: 2;
+    margin-top: 100px;
+    position: fixed;
+    background-color:#401201 ;
+    width: 200px;
+    height: 100vh;
+}
+
+.filtre h1{
+    text-align: center;
+}

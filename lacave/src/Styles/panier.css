@@ -1,0 +1,15 @@
+.panier{
+    color: black;
+}
+
+.title{
+    margin-top: 0px;
+    padding-top: 120px;
+    text-align: center;
+}
+
+.empty{
+    padding-top: 120px;
+    text-align: center;
+    color: black;
+}

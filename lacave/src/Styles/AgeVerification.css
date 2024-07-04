@@ -1,0 +1,53 @@
+
+
+
+.age-verification-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+h2{
+    color: white;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+}
+
+.oui{
+    background-color: #ffa31a;
+    color: black;
+    font-weight: bold;
+}
+
+.non{
+    background-color: #808080;
+    color: white;
+    font-weight: bold;
+}
+
+.age-verification-modal {
+    background: black;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.age-verification-modal h2 {
+    margin-bottom: 20px;
+}
+
+.age-verification-modal button {
+    margin: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}

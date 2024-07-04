@@ -1,0 +1,79 @@
+body{
+    background-color: white;
+}
+
+.lmj-plant-list{
+    margin-left: 200px;
+    margin-top: 75px;
+    list-style-type: none;
+    padding: 32px;
+    display: flex;
+    flex-wrap:wrap;
+    max-width:90vw;
+    align-items: flex-start;
+}
+
+
+
+.lmj-shopping-list{
+    width: 100%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 200px;
+}
+
+.filterOn{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-weight: bolder;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #401201;
+    margin-left: 20px;
+    margin-top: 120px;
+    margin-bottom: -90px;
+}
+
+.filterOn div {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.filterOnDiv:nth-child(1){
+    margin-left: 250px;
+}
+
+.filterOnDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.pagination button {
+    margin: 0 10px;
+    padding: auto;
+    border: none;
+    background-color: #401201;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pagination button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    margin: 0 10px;
+    font-weight: bold;
+}
