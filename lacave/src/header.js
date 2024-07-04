@@ -17,6 +17,9 @@ const Header =()=> {
         <li>
           <Link to="/inventaire">Inventaire</Link>
         </li>
+        <li>
+          <Link to="/gestion">Gestion</Link>
+        </li>
       </ul>
     </nav>
     </div>

@@ -10,6 +10,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Connexion from './Components/pageConnexion/connexion';
+import Gestion from './gestion';
 
 
 
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
     element : <Boutique/>},
     {path: "/connexion",
       element : <Connexion/>
+    },{
+      path: "/gestion",
+      element: <Gestion/>,
     }
 ]);
 

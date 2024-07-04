@@ -10,6 +10,7 @@ const Panier = ({ cart, updateCart, promoCodes, setCartOpen }) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    console.log(sessionStorage)
     const newTotal = cart.reduce((acc, plantType) => acc + plantType.amount * plantType.price, 0);
     setTotal(newTotal);
   }, [cart, discount]);
@@ -26,9 +27,50 @@ const Panier = ({ cart, updateCart, promoCodes, setCartOpen }) => {
     return price - (price * discount / 100);
   };
 
-  const pay = () => {
-    console.log("plapl");
-  }
+  const pay = async() => {
+    cart.forEach(element => {
+      console.log(element)
+      const article = element.id
+      const quantite = element.amount
+      const client = Number(sessionStorage.getItem("identifiant"))
+      const fournisseurID = element.idFournisseur
+      const date = new Date()
+
+      // Obtenir l'année, le mois et le jour
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+      const day = String(date.getDate()).padStart(2, '0');
+
+// Formater la date en 'YYYY-MM-DD'
+      const formattedDate = `${year}-${month}-${day}`;
+      console.log(formattedDate)
+      const sendData = JSON.stringify({
+        "article": {
+          "idArticle": article
+        },
+        "quantite": quantite,
+        "client": {
+          "idClient": client
+        },
+        "date_commande": formattedDate,
+        "date_suppression": ""
+      })
+      try {
+          const response =  fetch("http://localhost:8080/commandes/create", {
+              method: 'POST',
+              cache:"no-cache",
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: sendData
+          });
+          const data = response.json()
+          console.log(data)
+    }
+    catch{
+      console.log("faute")
+    }})}
+    
 
   const totalAfterDiscount = total - (total * discount / 100);
 

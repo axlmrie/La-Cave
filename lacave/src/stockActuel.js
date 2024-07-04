@@ -13,11 +13,10 @@ const StockActuel = () => {
 
   const createRuptureTab = async () => {
     const ruptureTab = [];
-    const response = await fetch('http://localhost:8888/articles/readArticle');
+    const response = await fetch('http://localhost:8080/articles/FindAll');
     const data = await response.json();
-    console.log(data)
-    setLenRupture(data.datas.length);
-    data.datas.forEach((element) => {
+    setLenRupture(data.length);
+    data.forEach((element) => {
       console.log(element)
       ruptureTab.push(
         new Articles(

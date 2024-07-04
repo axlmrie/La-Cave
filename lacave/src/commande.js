@@ -2,32 +2,31 @@ import { useState, useEffect } from "react";
 
 const Commande = () => {
   class Articles {
-    constructor(article, quantite, client, fournisseur, date_commande) {
+    constructor(article, quantite, client, date_commande) {
       this.article = article;
       this.quantite = quantite;
       this.client = client;
-      this.fournisseur = fournisseur;
       this.date_commande = date_commande;
     }
   }
 
   const createRuptureTab = async () => {
     const ruptureTab = [];
-    const response = await fetch('http://localhost:8888/commandes/affichageCommandes');
+    const response = await fetch('http://localhost:8080/commandes/FindAll');
     const data = await response.json();
-    setLenRupture(data.datas.length);
-    data.datas.forEach((element) => {
+    setLenRupture(data.length);
+    console.log(data)
+    data.forEach((element) => {
+      console.log(element.article.designation)
       ruptureTab.push(
         new Articles(
-          element.designation,
+          element.article.designation,
           element.quantite,
-          element.nom_client,
-          element.nom_fournisseur,
+          element.client.nom,
           element.date_commande
         )
       );
     });
-    console.log(ruptureTab)
     setRupture(ruptureTab);
   };
 
@@ -124,7 +123,6 @@ const Commande = () => {
           <p><strong>Domaine:</strong> {selectedArticle.domaine}</p>
           <p><strong>Fournisseur:</strong> {selectedArticle.fournisseur}</p>
           <p><strong>Conditionnement:</strong> {selectedArticle.conditionnement}</p>
-          <p><strong>nom du fournisseur:</strong> {selectedArticle.fournisseur}</p>
           <p><strong>Date de commande:</strong> {selectedArticle.date_commande}</p>
           <button onClick={handleBackClick}>Retour</button>
           {!isOrdering ? (
@@ -159,7 +157,6 @@ const Commande = () => {
                 <th onClick={() => requestSort('article')}>Articles</th>
                 <th onClick={() => requestSort('quantite')}>quantite</th>
                 <th onClick={() => requestSort('client')}>Nom client</th>
-                <th onClick={() => requestSort('fournisseur')}>fournisseur</th>
                 <th onClick={() => requestSort('date')}>Date de la commande</th>
               </tr>
             </thead>
@@ -171,7 +168,6 @@ const Commande = () => {
                   <td>
                     {article.client} {article.stock < 10 && <span style={{color: 'red'}}>⚠️</span>}
                   </td>
-                  <td>{article.fournisseur}</td>
                   <td>{article.date_commande}</td>
                 </tr>
               ))}

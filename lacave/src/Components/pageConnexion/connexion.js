@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import '/Users/code/Documents/La-Cave/lacave/src/Styles/connexion.css'
+import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/connexion.css'
 import PhoneSelect from './PhoneSelect';
-import logo from '/Users/code/Documents/La-Cave/lacave/src/Assets/logo.png'
-import bg from '/Users/code/Documents/La-Cave/lacave/src/Assets/wineCave.webp'
+import logo from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/logo.png'
+import bg from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/wineCave.webp'
 
 function validatePassword(password) {
     const lengthRequirement = password.length >= 8;
@@ -29,9 +29,9 @@ const Connexion =() =>{
             return;
         }
 
-        const sendData = JSON.stringify({ mail : email, password: mdp })
+        const sendData = JSON.stringify({ email : email, password: mdp })
         try {
-            const response = await fetch("http://localhost:8888/log/login", {
+            const response = await fetch("http://localhost:8080/clients/login", {
                 method: 'POST',
                 cache:"no-cache",
                 headers: {
@@ -40,16 +40,17 @@ const Connexion =() =>{
                 body: sendData
             });
             const data = await response.json();
-
-            if (data.status === "success") {
+            console.log(data)
+            if (data.idClient != undefined) {
+                console.log(data)
                 sessionStorage.clear();
-                sessionStorage.setItem("identifiant", email);
+                sessionStorage.setItem("identifiant", data.idClient);
                 sessionStorage.setItem("Connected", true);
-                sessionStorage.setItem("session", 'true');
+                sessionStorage.setItem("session", true);
                 window.location.href = "/boutique";
             } else {
                 alert("Erreur lors de l'inscription");
-                sessionStorage.setItem("session", "false");
+                sessionStorage.setItem("session",false);
             }
         } catch (error) {
             console.error('Erreur:', error);
@@ -75,7 +76,7 @@ const Connexion =() =>{
 
         const sendData = JSON.stringify({prenom:prenom,nom:nom,numero_tel:entirePhoneNumber,mail:mail,password:mdp})
         try {
-            const response = await fetch("http://localhost:8888/log/login", {
+            const response = await fetch("http://localhost:8080/clients/create", {
                 method: 'POST',
                 cache:"no-cache",
                 headers: {
@@ -85,9 +86,9 @@ const Connexion =() =>{
             });
             const data = await response.json();
             console.log(data)
-            if (data.status === "success") {
+            if (data.idClient != undefined) {
                 sessionStorage.clear();
-                sessionStorage.setItem("identifiant", mail);
+                sessionStorage.setItem("identifiant", data.idClient);
                 sessionStorage.setItem("Connected", true);
                 sessionStorage.setItem("session", 'true');
                 window.location.href = "/boutique";

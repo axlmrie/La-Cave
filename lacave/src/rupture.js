@@ -13,10 +13,10 @@ const Rupture = () => {
 
   const createRuptureTab = async () => {
     const ruptureTab = [];
-    const response = await fetch('http://localhost:8888/articles/stockArticleNeg');
+    const response = await fetch('http://localhost:8080/articles/stockArticleNeg');
     const data = await response.json();
-    setLenRupture(data.datas.length);
-    data.datas.forEach((element) => {
+    setLenRupture(data.length);
+    data.forEach((element) => {
       ruptureTab.push(
         new Articles(
           element.reference,
@@ -110,7 +110,7 @@ const Rupture = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8888/stock/updateStock/", {
+      const response = await fetch("http://localhost:8080/stock/updateStock/", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

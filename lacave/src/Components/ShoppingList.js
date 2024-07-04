@@ -10,7 +10,7 @@ function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, act
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 20;
 
-    console.log(localStorage)
+    console.log(plants)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,7 +31,7 @@ function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, act
         setCurrentPage(1);
     }, [activeCategory, activeConditionnement, activeFamille, activeAnnee, priceRange]);
 
-    function addToCart(name, price) {
+    function addToCart(name, price, id, idFournisseur) {
         const currentPlantSaved = cart.find((plant) => plant.name === name);
         if (currentPlantSaved) {
             const cartFilteredCurrentPlant = cart.filter(
@@ -39,10 +39,10 @@ function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, act
             );
             updateCart([
                 ...cartFilteredCurrentPlant,
-                { name, price, amount: currentPlantSaved.amount + 1 }
+                { name, price,id,idFournisseur, amount: currentPlantSaved.amount + 1 }
             ]);
         } else {
-            updateCart([...cart, { name, price, amount: 1 }]);
+            updateCart([...cart, { name, price,id,idFournisseur, amount: 1 }]);
         }
     }
 
@@ -112,7 +112,7 @@ function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, act
                 )}
             </div>
             <ul className='lmj-plant-list'>
-                {currentPlants.map(({ id, cover, name, stock, conditionnement, reference, category, price }) => (
+                {currentPlants.map(({ id,idFournisseur, cover, name, stock, conditionnement, reference, category, price }) => (
                     <div key={id}>
                         <PlantItem
                             cover={cover}
@@ -121,6 +121,8 @@ function ShoppingList({ cart, updateCart, activeCategory, setActiveCategory, act
                             conditionnement={conditionnement}
                             reference={reference}
                             price={price}
+                            id={id}
+                            idFournisseur={idFournisseur}
                             addToCart={addToCart} // Passer addToCart en prop
                         />
                     </div>

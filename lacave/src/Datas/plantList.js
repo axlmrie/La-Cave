@@ -20,26 +20,26 @@ const imageMapping = {
 export const plantList = [];
 
 export const creaVinList = () => {
-    return fetch('http://localhost:8888/articles/articleFamille')
+    return fetch('http://localhost:8080/articles/FindAll')
         .then(response => response.json())
         .then(data => {
-             
-            data.datas.forEach(element => {
-                const imageName = imageMapping[element.cepage];
+            data.forEach(element => {
+                const imageName = imageMapping[element.famille.cepage];
                 if (!imageName) {
-                    console.warn(`No image found for cépage: ${element.cepage}`);
+                    console.warn(`No image found for cépage: ${element.famille.cepage}`);
                 }
                 plantList.push({
                     name: element.designation,
-                    category: element.cepage,
-                    id: element.id_article,
+                    category: element.famille.cepage,
+                    id: element.idArticle,
+                    idFournisseur : element.famille.idFamille,
                     price: element.prix,
                     stock: element.stock,
                     reference: element.reference,
                     conditionnement: element.conditionnement,
                     cover:imageName,
-                    vignoble : element.vignoble,
-                    annee:element.annee,
+                    vignoble : element.famille.vignoble,
+                    annee:element.famille.annee,
                     // Vous pouvez ajuster cette ligne pour des images dynamiques si nécessaire
                 });
             });

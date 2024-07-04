@@ -11,11 +11,11 @@ const Home = () => {
         return <span>Pas d'Alerte pour le moments</span>;
       }
     const rupture =()=>{
-        fetch("http://localhost:8888/articles/stockArticleNeg")
+        fetch("http://localhost:8080/articles/stockArticleNeg")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-        setLenRupture(data.datas.length)}
+        setLenRupture(data.length)}
     )
     }    
     const [lenRupture,setLenRupture] = useState(0)
