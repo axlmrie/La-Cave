@@ -38,10 +38,7 @@ public class ArticlesController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PutMapping("/{id}/stock/{stock}")
-    public void modifyStock(@PathVariable int id, @PathVariable int stock) {
-        articlesService.modifyStock(id, stock);
-    }
+
     @PostMapping("/create")
     public Articles create(@RequestBody Articles articles) {
         return articlesService.createArticles(articles);
