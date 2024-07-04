@@ -21,6 +21,8 @@ public interface ArticlesService {
     void modifyStock(int id, int stock);
 
     Articles modifyArticles(int id, Articles articles);
+    void modifyStock(int id, int stock);
+
 
 
 
