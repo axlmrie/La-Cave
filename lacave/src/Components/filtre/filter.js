@@ -1,4 +1,4 @@
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/filter.css';
+import '../../Styles/filter.css'
 import Categories from './Categories';
 import { plantList, creaVinList } from '../../Datas/plantList';
 import { useState, useEffect } from 'react';

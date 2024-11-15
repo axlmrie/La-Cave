@@ -12,7 +12,7 @@ const InventaireContent = () => {
             }})
         .then(response => response.text())
         .then(data => {
-            if(data != "Changement effectué"){
+            if(data !== "Changement effectué"){
                 alert("Erreur lors du changement")
             }else{
                 window.location.reload()

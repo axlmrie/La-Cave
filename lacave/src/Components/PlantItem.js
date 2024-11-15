@@ -1,9 +1,7 @@
 import '../Styles/PlantItem.css';
 import cartIcon from '../Assets/panier.png'; // Assurez-vous d'avoir une image de panier
 
-function handleClick(plantName) {
-    alert(`Vous voulez acheter 1 ${plantName} ? Très bon choix`);
-}
+
 
 function PlantItem({ cover, name, conditionnement,id,idFournisseur, reference, price, addToCart }) {
     return (

@@ -33,7 +33,6 @@ const Panier = ({ cart, updateCart, promoCodes, setCartOpen }) => {
       const article = element.id
       const quantite = element.amount
       const client = Number(sessionStorage.getItem("identifiant"))
-      const fournisseurID = element.idFournisseur
       const date = new Date()
 
       // Obtenir l'année, le mois et le jour

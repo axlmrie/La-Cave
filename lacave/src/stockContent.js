@@ -1,4 +1,3 @@
-import { render } from "@testing-library/react";
 import StockActuel from "./stockActuel";
 import Rupture from "./rupture";
 import Commande from "./commande";

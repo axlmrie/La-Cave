@@ -1,6 +1,5 @@
 import Header from "./header"
 import './App.css';
-import { useState, useEffect } from "react";
 import Utilisateurs from "./utilisateurs";
 import Fournisseur from "./fournisseurs";
 import Vins from "./vin";

@@ -1,4 +1,4 @@
-import { Fragment,useState} from "react";
+import { useState} from "react";
 import React from "react";
 
 
@@ -19,7 +19,7 @@ const Home = () => {
     )
     }    
     const [lenRupture,setLenRupture] = useState(0)
-    const test = 0
+
     rupture()
     return(
         <div>

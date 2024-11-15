@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/connexion.css'
+import '../../Styles/connexion.css'
 import PhoneSelect from './PhoneSelect';
-import logo from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/logo.png'
-import bg from '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Assets/wineCave.webp'
+import logo from '../../Assets/logo.png'
+import bg from '../../Assets/wineCave.webp'
 
 function validatePassword(password) {
     const lengthRequirement = password.length >= 8;
@@ -41,7 +41,7 @@ const Connexion =() =>{
             });
             const data = await response.json();
             console.log(data)
-            if (data.idClient != undefined) {
+            if (data.idClient !== undefined) {
                 console.log(data)
                 sessionStorage.clear();
                 sessionStorage.setItem("identifiant", data.idClient);
@@ -86,7 +86,7 @@ const Connexion =() =>{
             });
             const data = await response.json();
             console.log(data)
-            if (data.idClient != undefined) {
+            if (data.idClient !== undefined) {
                 sessionStorage.clear();
                 sessionStorage.setItem("identifiant", data.idClient);
                 sessionStorage.setItem("Connected", true);

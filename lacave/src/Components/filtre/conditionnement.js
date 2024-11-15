@@ -1,4 +1,4 @@
-import '/Users/maxencerebours/Documents/Projet-informatique/La-Cave/lacave/src/Styles/Categories.css'
+import '../../Styles/Categories.css'
 
 function Conditionnement({setActiveConditionnement, conditionnement,activeConditionnement}){
     return (

@@ -13,7 +13,7 @@ function AgeVerification({ onVerify }) {
     return (
         <div className="age-verification-overlay">
             <div className="age-verification-modal">
-                <img src={logo} className='logo'></img>
+                <img src={logo} alt='Logo' className='logo'></img>
                 <h2>Êtes-vous majeur ?</h2>
                 <button onClick={() => handleVerify(true)} className='oui'>Oui j'ai plus de 18 ans - Entrer</button>
                 <button onClick={() => handleVerify(false)}className='non'>Non J'ai moins de 18 ans - Sortir</button>

@@ -47,7 +47,7 @@ const Vins = () => {
 
     useEffect(() => {
         createArticleTab();
-    }, []);
+    }, [createArticleTab]);
 
     const displayPage = () => {
         const start = (currentPage - 1) * rowsPerPage;

@@ -43,7 +43,7 @@ const Rupture = () => {
 
   useEffect(() => {
     createRuptureTab();
-  }, []);
+  }, [createRuptureTab]);
 
   const displayPage = () => {
     const start = (currentPage - 1) * rowsPerPage;
