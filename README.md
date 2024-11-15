@@ -1,12 +1,12 @@
-#La Cave
+# La Cave
 
-Description du projet
+## Description du projet
 
 La Cave est une solution de suivi de stock développée dans le cadre de ma première année au CESI. Ce projet avait pour objectif de créer une application permettant à une entreprise de gérer efficacement ses stocks de vin, en offrant des fonctionnalités adaptées aux besoins des utilisateurs.
 
 Le projet a été réalisé en collaboration avec Maxence, mon camarade de classe. Nous avons utilisé des technologies modernes et des pratiques de développement collaboratif pour atteindre nos objectifs.
 
-Fonctionnalités
+## Fonctionnalités
 
 Gestion des stocks : suivi des références, quantités et informations détaillées des produits.
 Organisation des vins : par catégories (ex. cépages, types, millésimes).
@@ -14,22 +14,21 @@ Consultation et mise à jour des données : depuis une interface utilisateur int
 Architecture back-end robuste : prise en charge des opérations CRUD via une API sécurisée.
 Technologies utilisées
 
-Front-end
+### Front-end
 React.js : pour construire une interface utilisateur réactive et moderne.
-Back-end
+### Back-end
 Java Spring Boot : pour développer une API REST performante et scalable.
-Base de données
+###Base de données
 MariaDB : pour stocker et gérer les données des vins.
 Installation
 
-Prérequis
+## Prérequis
 Node.js (version 16+ recommandée)
 Java 17 (JDK)
 MariaDB (ou un serveur compatible avec les scripts SQL fournis)
 Maven (pour la gestion des dépendances Java)
 
-Auteurs
-
+## Auteurs
 Axel M. (GitHub : axlmrie)
 Maxence (GitHub : Tymacz)
 
